@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5245507980441562481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5245507980441562487}
+  - component: {fileID: 5245507980441562480}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5245507980441562487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245507980441562481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.9909015, y: 2.9547772, z: -0.018313646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5245507980441562480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245507980441562481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2965e0ddeedcbf141b5e54f4e3c3b2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallpot: {fileID: 5606127172571042369, guid: 022c037b00ef8bd46bb434514b699d9b, type: 3}
+  midpot: {fileID: 4804881005284646966, guid: 41e0b8d1b22318f4c975fbe6e5d1a85c, type: 3}
+  bigpot: {fileID: 1882545423695908219, guid: 1ec72ae4c086dac458b47e84074c9c3a, type: 3}
+  atkgem: {fileID: 4897579028591479763, guid: 908e4183cfb939844a83bb2136fa3a6e, type: 3}
+  defgem: {fileID: 2022968035664510673, guid: 8d262c2dc2f019444a8d864d5118ee8c, type: 3}
+  ydoor: {fileID: 1008215682623779079, guid: 23b320884fa72cc43a5463fff2f55f61, type: 3}
+  ykey: {fileID: 2297482619158624384, guid: 0cfef9f597160424a900acec43199fe0, type: 3}
+  bat: {fileID: 2622050887843121252, guid: 35addbab553a7f44f9bb0bdf13260310, type: 3}
+  playerGreenKeys: 0
+  playerRedKeys: 0
+  playerBlueKeys: 0
+  enemyCollider: {fileID: 0}
+  enemyHealth: 0
+  enemyAtk: 0
+  enemyDef: 0
+  text_hp: {fileID: 1827521148661808138, guid: 7cdf9df4d4c58f245b0b2089ee46c5f7, type: 3}
+  text_atk: {fileID: 3819605531723661199, guid: c91146d6031c15945a1fb5d1e732f668, type: 3}
+  text_def: {fileID: 4435831161927312382, guid: 21c39a3a374c5c348bf29c91cdbacf51, type: 3}
+  text_hp_enemy: {fileID: 2180260002355794718, guid: f640165c916e18b48abeeef164d2d5a3, type: 3}
+  text_atk_enemy: {fileID: 8918001553163504716, guid: 4b813a4c47610c54792596c1b62fc468, type: 3}
+  text_def_enemy: {fileID: 4709915599426638558, guid: 0590d18c04240a34c8afe61c4b17006b, type: 3}
+  text_yk: {fileID: 8994655975444372222, guid: 0e0e4b672fb579f448b362422d4c6f95, type: 3}
