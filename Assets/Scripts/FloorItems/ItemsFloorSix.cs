@@ -66,6 +66,7 @@ public class ItemsFloorSix : MonoBehaviour
 
     public static List<Item> getList()
     {
+        if(sixFloorList.Count == 0)
         generateList();
         return sixFloorList;
     }
