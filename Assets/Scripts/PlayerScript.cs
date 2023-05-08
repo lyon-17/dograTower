@@ -186,14 +186,14 @@ public class PlayerScript : MonoBehaviour
         {
             potionTrigger(25, collision);
         }
-        if (collision.tag == "AtkGem")
+        if (collision.tag == "RedGem")
         {
             GameManager.playerAtk++;
             CanvasStatsScript.instance.updateStat("atk", GameManager.playerAtk);
             collision.gameObject.SetActive(false);
             StartCoroutine(statusValue(1, 1, true));
         }
-        if (collision.tag == "DefGem")
+        if (collision.tag == "BlueGem")
         {
             GameManager.playerDef++;
             CanvasStatsScript.instance.updateStat("def", GameManager.playerDef);

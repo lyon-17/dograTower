@@ -175,13 +175,18 @@ public class GameManager : MonoBehaviour
         playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
         playerRedKeys = GameSave.current.gameData.playerRedKeys;
         playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
-        //managerItemList.Clear();
-        //GameSave.current.gameData.itemList.Clear();
-        managerItemList = ItemsList.createNewList();
-        GameSave.current.gameData.itemList = managerItemList;
+        managerItemList.Clear();
+        GameSave.current.itemList.Clear();
+        managerItemList = ItemsList.getList();
+        GameSave.current.itemList = managerItemList;
         //Update the scene adding the objects loaded into the scene
         refresh = true;
         newGame = true;
+    }
+
+    private void generateList()
+    {
+        managerItemList = ItemsList.getList();
     }
 
     private void Start()
@@ -204,12 +209,14 @@ public class GameManager : MonoBehaviour
         text_gk.text = ": " + playerGreenKeys;
         text_rk.text = ": " + playerRedKeys;
         text_bk.text = ": " + playerBlueKeys;
-        GameSave.current.gameData.itemList = new List<Item>();
+        GameSave.current.itemList = new List<Item>();
         int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys, playerRedKeys, playerBlueKeys };
         //Call to the stats script to refresh the text with the player stats
         CanvasStatsScript.instance.updatePlayerStats(playerStats);
-        managerItemList = ItemsList.createNewList();
+
         //Add items to the local list
+
+        generateList();
         loadItems();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -357,7 +364,7 @@ public class GameManager : MonoBehaviour
         else
             loadFromMenu = true;
         //Items in the scene
-        managerItemList = GameSave.current.gameData.itemList;
+        managerItemList = GameSave.current.itemList;
     }
 
     //Info from manager and updates the gameSave
@@ -376,13 +383,11 @@ public class GameManager : MonoBehaviour
         GameSave.current.gameData.playerX = (int) player.transform.position.x;
         GameSave.current.gameData.playerY = (int) player.transform.position.y;
         //All the active objects are saved as items
-        GameSave.current.gameData.itemList = new List<Item>();
-        
+        GameSave.current.itemList.Clear();
 
         string[] objectNames = {"atkgem","defgem","smallpotion","mediumpotion","bigpotion",
                                 "yellowkey","greenkey","redkey","bluekey","yellowdoor","greendoor","reddoor","bluedoor",
                                 "smallslime","brownslime","tealslime","terrorbat","gelatinouscube","watcher","treant","vengefulspirit","wingeddemon"};
-
         foreach (GameObject obj in objs)
         {
             //Check that object exist in the current scene
@@ -391,15 +396,18 @@ public class GameManager : MonoBehaviour
                 //Check that object is active, if inactive it isn't saved
                 if (obj.activeInHierarchy == true)
                 {
-                    string objectName = obj.tag.ToLower();
-                    if (objectNames.Contains(objectName))
+                    foreach (string objectName in objectNames)
                     {
-                        GameSave.current.gameData.itemList.Add(new Item(objectName, (int)obj.transform.position.x, (int)obj.transform.position.y));
+                        if (obj.name.ToLower().Contains(objectName))
+                        {
+                            GameSave.current.itemList.Add(new Item(objectName, (int)obj.transform.position.x, (int)obj.transform.position.y));
+                            continue;
+                        }
                     }
                 }
             }
         }
-        managerItemList = GameSave.current.gameData.itemList;
+        managerItemList = GameSave.current.itemList;
     }
 
     //Creates a new save to generate a new save when needed
@@ -428,8 +436,8 @@ public class GameManager : MonoBehaviour
             GameSave.current.gameData.playerY = (int)player.transform.position.y;
         }
         //A new list with the items in the scene
-        GameSave.current.gameData.itemList = new List<Item>();
-        GameSave.current.gameData.itemList = managerItemList;
+        GameSave.current.itemList = new List<Item>();
+        GameSave.current.itemList = managerItemList;
         //Update the scene adding the objects loaded into the scene
         refresh = true;
     }

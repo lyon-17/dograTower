@@ -78,7 +78,6 @@ public class ItemsFloorFive : MonoBehaviour
 
     public static List<Item> getList()
     {
-        if(fiveFloorList.Count == 0)
         generateList();
         return fiveFloorList;
     }
