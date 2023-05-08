@@ -12,6 +12,8 @@ public class SystemScript : MonoBehaviour
 
     public static bool showLoad;
 
+    public Vector2 scrollPosition = Vector2.zero;
+
     public static List<GameSave> savedGames = new List<GameSave>();
 
     private void Start()
@@ -28,12 +30,15 @@ public class SystemScript : MonoBehaviour
         //Shows only when load is clicked on, removed when exiting
         if (showLoad)
         {
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(250), GUILayout.Height(200));
+
             GUILayout.Box("Select Save File");
             GUILayout.Space(10);
+            int game = 0;
 
             foreach (GameSave g in SaveLoad.savedGames)
             {
-                if (GUILayout.Button(" Stats: HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef))
+                if (GUILayout.Button("Game number: " + game + ". HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef))
                 {
                     if (GameSave.current == null)
                         GameSave.current = new GameSave();
@@ -45,6 +50,7 @@ public class SystemScript : MonoBehaviour
                     //Move on to game...
 
                 }
+                game++;
             }
         }
     }

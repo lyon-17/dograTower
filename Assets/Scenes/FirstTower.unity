@@ -17890,6 +17890,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 1435227600}
+  scrollPosition: {x: 0, y: 0}
+  startX: 650
+  startY: 20
+  startWidth: 200
+  startHeight: 200
+  endx: 0
+  endy: 0
+  endWidth: 220
+  endHeight: 200
 --- !u!1 &1458180227
 GameObject:
   m_ObjectHideFlags: 0
