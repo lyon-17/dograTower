@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4119349026168479758}
   m_Layer: 0
   m_Name: AtkGem
-  m_TagString: RedGem
+  m_TagString: AtkGem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

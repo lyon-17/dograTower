@@ -35,6 +35,8 @@ TagManager:
   - IconsPlayer
   - Vortex
   - Dogra
+  - AtkGem
+  - DefGem
   layers:
   - Default
   - TransparentFX

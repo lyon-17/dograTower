@@ -137,12 +137,6 @@ public class TutorialScript : MonoBehaviour
         }
         if (!disable)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                //open menu
-                menuCanvas.gameObject.SetActive(true);
-                disable = true;
-            }
             //Battle attempt, should be a round every X time.
             if (battleActive && battleEncounter && Time.time > currentTime + 0.85)
             {
@@ -178,9 +172,17 @@ public class TutorialScript : MonoBehaviour
             }
                 
         }
-        if (!menuCanvas.isActiveAndEnabled)
+        if (disable && Input.GetKeyDown(KeyCode.Escape))
         {
+            menuCanvas.gameObject.SetActive(false);
             disable = false;
+            SystemScript.showLoad = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !disable)
+        {
+            //open menu
+            menuCanvas.gameObject.SetActive(true);
+            disable = true;
         }
     }
 
