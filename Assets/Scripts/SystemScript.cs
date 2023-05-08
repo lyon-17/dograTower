@@ -10,6 +10,8 @@ public class SystemScript : MonoBehaviour
 {
     public Canvas menuCanvas;
 
+    public static bool showLoad;
+
     public static List<GameSave> savedGames = new List<GameSave>();
 
     private void Start()
@@ -17,27 +19,32 @@ public class SystemScript : MonoBehaviour
         if (menuCanvas != null)
         {
             menuCanvas.gameObject.SetActive(false);
+            showLoad = false;
         }
     }
 
     void OnGUI()
     {
-        GUILayout.Box("Select Save File");
-        GUILayout.Space(10);
-
-        foreach (GameSave g in SaveLoad.savedGames)
+        //Shows only when load is clicked on, removed when exiting
+        if (showLoad)
         {
-            if (GUILayout.Button(" Stats: HP"+g.gameData.playerHealth+" atk "+g.gameData.playerAtk+" def "+g.gameData.playerDef))
+            GUILayout.Box("Select Save File");
+            GUILayout.Space(10);
+
+            foreach (GameSave g in SaveLoad.savedGames)
             {
-                if (GameSave.current == null)
-                    GameSave.current = new GameSave();
-                GameManager.instance.canvas.SetActive(true);
-                SceneManager.LoadScene(0);
-                GameSave.current = g;
-                GameManager.getStats();
-                GameManager.refreshData();
-                //Move on to game...
-                    
+                if (GUILayout.Button(" Stats: HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef))
+                {
+                    if (GameSave.current == null)
+                        GameSave.current = new GameSave();
+                    GameManager.instance.canvas.SetActive(true);
+                    SceneManager.LoadScene(0);
+                    GameSave.current = g;
+                    GameManager.getStats();
+                    GameManager.refreshData();
+                    //Move on to game...
+
+                }
             }
         }
     }
@@ -63,6 +70,7 @@ public class SystemScript : MonoBehaviour
     public void LoadGame()
     {
         //Should call OnGUI
+        showLoad = true;
     }
 
     public void startTutorial()

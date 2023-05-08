@@ -167,8 +167,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04314df29b834b14ea59161afcaccbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_eName: {fileID: 0}
-  text_hp_enemy: {fileID: 0}
-  text_atk_enemy: {fileID: 0}
-  text_def_enemy: {fileID: 0}
-  textdmg: {fileID: 0}

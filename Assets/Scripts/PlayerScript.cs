@@ -102,6 +102,7 @@ public class PlayerScript : MonoBehaviour
         {
             menuCanvas.gameObject.SetActive(false);
             disable = false;
+            SystemScript.showLoad = false;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !disable)
         {
