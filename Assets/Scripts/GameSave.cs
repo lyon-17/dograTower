@@ -13,9 +13,12 @@ public class GameSave
     public static GameSave current;
     //Testing
     public GameData gameData;
+    public List<Item> itemList;
 
     public GameSave()
     {
+        itemList = new List<Item>();
         gameData = new GameData();
     }
+
 }

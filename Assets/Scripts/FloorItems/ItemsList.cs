@@ -74,7 +74,7 @@ public class ItemsList : MonoBehaviour
         FloorItemList.Add(new Item("watcher", 9, 5));
     }
 
-    public static void generateItemList()
+    public static List<Item> getList()
     {
         generateList();
         List<Item> listFloorTwo = ItemsFloorTwo.getList();
@@ -96,15 +96,7 @@ public class ItemsList : MonoBehaviour
         FloorItemList.AddRange(listFloorEight);
         FloorItemList.AddRange(listFloorNine);
         FloorItemList.AddRange(listFloorTen);
-    }
 
-    public static List<Item> createNewList()
-    {
-        if (FloorItemList.Count == 0)
-        {
-            generateItemList();
-        }
         return FloorItemList;
     }
-
 }
