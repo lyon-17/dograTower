@@ -63,12 +63,6 @@ public class PlayerScript : MonoBehaviour
         text_status.transform.position = new Vector3(Rigidbody2D.transform.position.x+2f, Rigidbody2D.transform.position.y+1.5f, Rigidbody2D.transform.position.z);
         if (!disable)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                //open menu
-                menuCanvas.gameObject.SetActive(true);
-                disable = true;
-            }
             if (canMove && canMoveFloors)
             {
                 Move();
@@ -104,9 +98,17 @@ public class PlayerScript : MonoBehaviour
                 currentTime = Time.time;
             }*/
         }
-        if (!menuCanvas.isActiveAndEnabled)
+        if (disable && Input.GetKeyDown(KeyCode.Escape))
         {
+            menuCanvas.gameObject.SetActive(false);
             disable = false;
+            SystemScript.showLoad = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !disable)
+        {
+            //open menu
+            menuCanvas.gameObject.SetActive(true);
+            disable = true;
         }
     }
 
