@@ -17,6 +17,7 @@ public class GameData
     public int playerBlueKeys;
     public int playerX;
     public int playerY;
+    public List<Item> itemList;
 
     public GameData()
     {
@@ -27,7 +28,9 @@ public class GameData
         playerGreenKeys = 0;
         playerRedKeys = 0;
         playerBlueKeys = 0;
+        itemList = new List<Item>();
     }
+
     public void setPlayerPos(int x, int y)
     {
         playerX = x;

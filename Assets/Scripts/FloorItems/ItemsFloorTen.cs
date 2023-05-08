@@ -40,6 +40,7 @@ public class ItemsFloorTen : MonoBehaviour
 
     public static List<Item> getList()
     {
+        if(tenFloorList.Count == 0)
         generateList();
         return tenFloorList;
     }
