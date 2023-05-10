@@ -52,7 +52,9 @@ public class SystemScript : MonoBehaviour
                 }
                 game++;
             }
+            GUILayout.EndScrollView();
         }
+        
     }
 
     //Restart the entire tower
@@ -96,12 +98,6 @@ public class SystemScript : MonoBehaviour
             TutorialScript.tutorial.disablePlayerIcons();
 
         SceneManager.LoadScene("Intro");
-    }
-
-
-    public void exitMenu()
-    {
-        menuCanvas.gameObject.SetActive(false);
     }
 
     //Finaliza el juego
