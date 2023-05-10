@@ -54,6 +54,8 @@ public class ItemsFloorFour : MonoBehaviour
 
         fiveFloorList.Add(new Item("bigpotion", 2, 11 + baseY));
         fiveFloorList.Add(new Item("bigpotion", 11, 11 + baseY));
+        fiveFloorList.Add(new Item("bigpotion", 10, 5 + baseY));
+
 
 
         //Enemies

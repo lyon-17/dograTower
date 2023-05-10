@@ -20,6 +20,7 @@ public class ItemsFloorFive : MonoBehaviour
         fiveFloorList.Add(new Item("greenkey", 7, 3 + baseY));
 
         fiveFloorList.Add(new Item("redkey", 0, 0 + baseY));
+        fiveFloorList.Add(new Item("redkey", 13, 6 + baseY));
 
         //doors
 
@@ -74,6 +75,10 @@ public class ItemsFloorFive : MonoBehaviour
         fiveFloorList.Add(new Item("gelatinouscube", 13, 10 + baseY));
         fiveFloorList.Add(new Item("gelatinouscube", 13, 8 + baseY));
         fiveFloorList.Add(new Item("gelatinouscube", 13, 7 + baseY));
+        fiveFloorList.Add(new Item("gelatinouscube", 2, 2 + baseY));
+        fiveFloorList.Add(new Item("gelatinouscube", 4, 2 + baseY));
+
+
     }
 
     public static List<Item> getList()

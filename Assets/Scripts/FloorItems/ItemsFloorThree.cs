@@ -11,7 +11,7 @@ public class ItemsFloorThree : MonoBehaviour
     private static void generateList()
     {
         //Keys
-        fiveFloorList.Add(new Item("yellowkey", 1, 3 + baseY));
+        fiveFloorList.Add(new Item("yellowkey", 0, 3 + baseY));
         fiveFloorList.Add(new Item("yellowkey", 7, 12 + baseY));
         fiveFloorList.Add(new Item("yellowkey", 10, 12 + baseY));
         fiveFloorList.Add(new Item("yellowkey", 10, 13 + baseY));
@@ -60,6 +60,8 @@ public class ItemsFloorThree : MonoBehaviour
         fiveFloorList.Add(new Item("brownslime", 13, 2 + baseY));
 
         fiveFloorList.Add(new Item("tealslime", 5, 2 + baseY));
+        fiveFloorList.Add(new Item("tealslime", 13, 10 + baseY));
+
 
         fiveFloorList.Add(new Item("terrorbat", 10, 10 + baseY));
         fiveFloorList.Add(new Item("terrorbat", 6, 5 + baseY));

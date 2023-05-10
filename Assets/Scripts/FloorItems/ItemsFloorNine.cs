@@ -66,7 +66,7 @@ public class ItemsFloorNine : MonoBehaviour
 
         nineFloorList.Add(new Item("wingeddemon", 13, 9 + baseY));
         nineFloorList.Add(new Item("wingeddemon", 13, 7 + baseY));
-
+        nineFloorList.Add(new Item("wingeddemon", 5, 1 + baseY));
 
         nineFloorList.Add(new Item("treant", 13, 4 + baseY));
         nineFloorList.Add(new Item("treant", 12, 4 + baseY));
