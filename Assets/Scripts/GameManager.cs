@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public GameObject canvas;
+    public AudioClip[] combatSounds;
+    public AudioClip Hurt;
     /*
      * Contains the entire list of the items
      * 0 -> small potion
@@ -449,7 +451,7 @@ public class GameManager : MonoBehaviour
         activateIcons();
         string[] enemyStats = { enemyName, enemyHealth.ToString(), enemyAtk.ToString(), enemyDef.ToString() };
         CanvasStatsScript.instance.updateEnemyStats(enemyStats);
-
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)]);
         playerDmg = playerAtk - enemyDef;
         enemyDmg = enemyAtk - playerDef;
         enemyHealth -= playerDmg;
@@ -460,10 +462,15 @@ public class GameManager : MonoBehaviour
             enemyCollider.gameObject.SetActive(false);
             disactivateIcons();
             CanvasStatsScript.instance.cleanStats();
+            //Modify later on
+            if (enemyName.Contains("Dogra"))
+            {
+                SceneManager.LoadScene("Credits");
+            }
             battleActive = false;
             return false;
-            
         }
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(Hurt);
         playerHealth -= enemyDmg;
         CanvasStatsScript.instance.updateStat("hp", playerHealth);
         return true;

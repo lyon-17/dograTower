@@ -8,6 +8,20 @@ public class PlayerScript : MonoBehaviour
 {
     private Rigidbody2D Rigidbody2D;
 
+    /*
+     * Contains various sound effects
+     * 0 -> potion
+     * 1 -> atk/def gem
+     * 2 -> key
+     * 3 -> key used
+     * 4 to 6 -> Combat (random from 3)
+     * 7 -> Stairs up
+     * 8 -> Stairs down
+     * 
+     */
+
+    public AudioClip[] SoundsEffect;
+
     private float currentTime;
     private bool canMove = true;
 
@@ -186,15 +200,17 @@ public class PlayerScript : MonoBehaviour
         {
             potionTrigger(25, collision);
         }
-        if (collision.tag == "RedGem")
+        if (collision.tag == "AtkGem")
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
             GameManager.playerAtk++;
             CanvasStatsScript.instance.updateStat("atk", GameManager.playerAtk);
             collision.gameObject.SetActive(false);
             StartCoroutine(statusValue(1, 1, true));
         }
-        if (collision.tag == "BlueGem")
+        if (collision.tag == "DefGem")
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
             GameManager.playerDef++;
             CanvasStatsScript.instance.updateStat("def", GameManager.playerDef);
             StartCoroutine(statusValue(0, 1, true));
@@ -220,6 +236,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerYellowKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 GameManager.playerYellowKeys--;
                 CanvasStatsScript.instance.updateStat("yk", GameManager.playerYellowKeys);
@@ -230,6 +247,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerGreenKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 GameManager.playerGreenKeys--;
                 CanvasStatsScript.instance.updateStat("gk", GameManager.playerGreenKeys);
@@ -240,6 +258,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerRedKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 GameManager.playerRedKeys--;
                 CanvasStatsScript.instance.updateStat("rk", GameManager.playerRedKeys);
@@ -250,6 +269,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerBlueKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 GameManager.playerBlueKeys--;
                 CanvasStatsScript.instance.updateStat("bk", GameManager.playerBlueKeys);
@@ -258,44 +278,44 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.tag == "SmallSlime")
         {
-            enemyTrigger("smallSlime", collision);
+            enemyTrigger("smallSlime","Small Slime", collision);
         }
         if (collision.tag == "BrownSlime")
         {
-            enemyTrigger("brownSlime", collision);
+            enemyTrigger("brownSlime","Brown Slime", collision);
         }
         if (collision.tag == "TealSlime")
         {
-            enemyTrigger("tealSlime", collision);
+            enemyTrigger("tealSlime","Teal Slime", collision);
         }
         if (collision.tag == "TerrorBat")
         {
-            enemyTrigger("terrorbat", collision);
+            enemyTrigger("terrorbat","Terror Bat", collision);
         }
         if(collision.tag == "Gelatinous")
         {
-            enemyTrigger("gelatinouscube", collision);
+            enemyTrigger("gelatinouscube","Gelatinous Cube", collision);
         }
         if (collision.tag == "Treant")
         {
-            enemyTrigger("treant", collision);
+            enemyTrigger("treant","Treant", collision);
         }
         if (collision.tag == "Watcher")
         {
-            enemyTrigger("watcher", collision);
+            enemyTrigger("watcher","Watcher", collision);
         }
         if (collision.tag == "VengefulSpirit")
         {
-            enemyTrigger("vengefulSpirit", collision);
+            enemyTrigger("vengefulSpirit","Vengeful Spirit", collision);
         }
         if (collision.tag == "WingedDemon")
         {
-            enemyTrigger("wingedDemon", collision);
+            enemyTrigger("wingedDemon","Winged Demon", collision);
         }
         if (collision.tag == "Dogra")
         {
             Debug.Log("collider");
-            enemyTrigger("Dogra", collision);
+            enemyTrigger("Dogra","Dogra, the Abyssal Worm", collision);
         }
 
         if (collision.tag == "StairsUp" && !movedFloors)
@@ -306,6 +326,7 @@ public class PlayerScript : MonoBehaviour
             floor++;
             canvasTransitionText.text = "Floor " + floor;
             */
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 19, transform.position.z);
@@ -320,6 +341,7 @@ public class PlayerScript : MonoBehaviour
             floor--;
             canvasTransitionText.text = "Floor " + floor;
             */
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 19, transform.position.z);
@@ -340,12 +362,12 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    private void enemyTrigger(string enemyName, Collider2D enemyCollider)
+    private void enemyTrigger(string enemyName,string showName, Collider2D enemyCollider)
     {
         if (!battleEncounter)
         {
             int[] stats = EnemyStatList.enemyListing[enemyName];
-            GameManager.instance.enemyName = enemyName;
+            GameManager.instance.enemyName = showName;
             GameManager.instance.enemyHealth = stats[0];
             GameManager.instance.enemyAtk = stats[1];
             GameManager.instance.enemyDef = stats[2];
@@ -364,6 +386,7 @@ public class PlayerScript : MonoBehaviour
 
     private void potionTrigger(int health, Collider2D potionCollider)
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0]);
         GameManager.playerHealth += health;
         StartCoroutine(statusValue(2, health, true));
         CanvasStatsScript.instance.updateStat("hp", GameManager.playerHealth);
@@ -372,6 +395,7 @@ public class PlayerScript : MonoBehaviour
 
     private void keyTrigger(string keyType, Collider2D keyCollider)
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2]);
         switch (keyType)
         {
             case "yellow":
