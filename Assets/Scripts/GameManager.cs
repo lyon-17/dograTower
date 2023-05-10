@@ -460,6 +460,11 @@ public class GameManager : MonoBehaviour
             enemyCollider.gameObject.SetActive(false);
             disactivateIcons();
             CanvasStatsScript.instance.cleanStats();
+            //Modify later on
+            if (enemyName.Contains("Dogra"))
+            {
+                SceneManager.LoadScene("Credits");
+            }
             battleActive = false;
             return false;
             
