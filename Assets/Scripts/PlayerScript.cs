@@ -14,9 +14,8 @@ public class PlayerScript : MonoBehaviour
      * 1 -> atk/def gem
      * 2 -> key
      * 3 -> key used
-     * 4 to 6 -> Combat (random from 3)
-     * 7 -> Stairs up
-     * 8 -> Stairs down
+     * 4 -> Stairs up
+     * 5 -> Stairs down
      * 
      */
 
