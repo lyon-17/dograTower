@@ -43,7 +43,7 @@ public class SystemScript : MonoBehaviour
                     if (GameSave.current == null)
                         GameSave.current = new GameSave();
                     GameManager.instance.canvas.SetActive(true);
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(1);
                     GameSave.current = g;
                     GameManager.getStats();
                     GameManager.refreshData();
