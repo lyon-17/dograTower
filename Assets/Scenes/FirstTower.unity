@@ -2304,12 +2304,11 @@ MonoBehaviour:
   audioSources:
   - {fileID: 8300000, guid: 93d68baedcd24fc44be1599cdbeb9f69, type: 3}
   - {fileID: 8300000, guid: 37a7e8f01fb966743be8a98c8a59139a, type: 3}
-  - {fileID: 8300000, guid: d6343192421ecea4e8047cb6f053da03, type: 3}
+  - {fileID: 8300000, guid: dc698415fccbf4d488cb8c44614f3331, type: 3}
   - {fileID: 8300000, guid: cd23c48aec0ea704494d39ab8b713295, type: 3}
   audioSources2part:
-  - {fileID: 8300000, guid: 60c568b6368775b4da3fe419e3f44d46, type: 3}
-  - {fileID: 8300000, guid: 03354ab5c9f26be49be178239ab5d53d, type: 3}
-  - {fileID: 8300000, guid: bc12c8033538f1944b6b2b3cbb9e1c9e, type: 3}
+  - {fileID: 8300000, guid: d7595708790159640b5b82cac7ad2273, type: 3}
+  - {fileID: 8300000, guid: 924e9adf29ccd7a46906ff9fb1d8e7e9, type: 3}
   lastFloor: {fileID: 8300000, guid: fcc24404e9dbbc14db71939d9e278a46, type: 3}
 --- !u!82 &519420035
 AudioSource:
@@ -36036,6 +36035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3e068ac350e254ca24e8cda6571b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   SoundsEffect:
   - {fileID: 8300000, guid: 247c6ac5ffde52645a7cf8b501ebb53d, type: 3}
   - {fileID: 8300000, guid: f8c4804607ff9ce4fb83e3ee6af406e9, type: 3}
@@ -36043,6 +36043,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be6f20f04ac9ae546ad53764b55facaf, type: 3}
   - {fileID: 8300000, guid: 7fe5f2405182bac4dae4b0085f4bf1c5, type: 3}
   - {fileID: 8300000, guid: 85974a3986096f94aa6ed3db59be0188, type: 3}
+=======
+  SoundsEffect: []
+>>>>>>> Stashed changes
   disable: 0
   movedFloors: 0
   canMoveFloors: 1
