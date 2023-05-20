@@ -177,18 +177,13 @@ public class GameManager : MonoBehaviour
         playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
         playerRedKeys = GameSave.current.gameData.playerRedKeys;
         playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
-        managerItemList.Clear();
-        GameSave.current.itemList.Clear();
+        //managerItemList.Clear();
+        //GameSave.current.itemList.Clear();
         managerItemList = ItemsList.getList();
         GameSave.current.itemList = managerItemList;
         //Update the scene adding the objects loaded into the scene
         refresh = true;
         newGame = true;
-    }
-
-    private void generateList()
-    {
-        managerItemList = ItemsList.getList();
     }
 
     private void Start()
@@ -215,10 +210,8 @@ public class GameManager : MonoBehaviour
         int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys, playerRedKeys, playerBlueKeys };
         //Call to the stats script to refresh the text with the player stats
         CanvasStatsScript.instance.updatePlayerStats(playerStats);
-
+        managerItemList = ItemsList.getList();
         //Add items to the local list
-
-        generateList();
         loadItems();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -385,7 +378,7 @@ public class GameManager : MonoBehaviour
         GameSave.current.gameData.playerX = (int) player.transform.position.x;
         GameSave.current.gameData.playerY = (int) player.transform.position.y;
         //All the active objects are saved as items
-        GameSave.current.itemList.Clear();
+        GameSave.current.itemList = new List<Item>();
 
         string[] objectNames = {"atkgem","defgem","smallpotion","mediumpotion","bigpotion",
                                 "yellowkey","greenkey","redkey","bluekey","yellowdoor","greendoor","reddoor","bluedoor",
@@ -398,14 +391,9 @@ public class GameManager : MonoBehaviour
                 //Check that object is active, if inactive it isn't saved
                 if (obj.activeInHierarchy == true)
                 {
-                    foreach (string objectName in objectNames)
-                    {
-                        if (obj.name.ToLower().Contains(objectName))
-                        {
-                            GameSave.current.itemList.Add(new Item(objectName, (int)obj.transform.position.x, (int)obj.transform.position.y));
-                            continue;
-                        }
-                    }
+                    string objectName = obj.tag.ToLower();
+                    if (objectNames.Contains(objectName))
+                        GameSave.current.itemList.Add(new Item(objectName, (int)obj.transform.position.x, (int)obj.transform.position.y));
                 }
             }
         }
