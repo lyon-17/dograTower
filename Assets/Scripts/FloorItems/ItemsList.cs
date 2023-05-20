@@ -76,26 +76,29 @@ public class ItemsList : MonoBehaviour
 
     public static List<Item> getList()
     {
-        generateList();
-        List<Item> listFloorTwo = ItemsFloorTwo.getList();
-        List<Item> listFloorThree = ItemsFloorThree.getList();
-        List<Item> listFloorFour = ItemsFloorFour.getList();
-        List<Item> listFloorFive = ItemsFloorFive.getList();
-        List<Item> listFloorSix = ItemsFloorSix.getList();
-        List<Item> listFloorSeven = ItemsFloorSeven.getList();
-        List<Item> listFloorEight = ItemsFloorEight.getList();
-        List<Item> listFloorNine = ItemsFloorNine.getList();
-        List<Item> listFloorTen = ItemsFloorTen.getList();
+        if (FloorItemList.Count == 0)
+        {
+            generateList();
+            List<Item> listFloorTwo = ItemsFloorTwo.getList();
+            List<Item> listFloorThree = ItemsFloorThree.getList();
+            List<Item> listFloorFour = ItemsFloorFour.getList();
+            List<Item> listFloorFive = ItemsFloorFive.getList();
+            List<Item> listFloorSix = ItemsFloorSix.getList();
+            List<Item> listFloorSeven = ItemsFloorSeven.getList();
+            List<Item> listFloorEight = ItemsFloorEight.getList();
+            List<Item> listFloorNine = ItemsFloorNine.getList();
+            List<Item> listFloorTen = ItemsFloorTen.getList();
 
-        FloorItemList.AddRange(listFloorTwo);
-        FloorItemList.AddRange(listFloorThree);
-        FloorItemList.AddRange(listFloorFour);
-        FloorItemList.AddRange(listFloorFive);
-        FloorItemList.AddRange(listFloorSix);
-        FloorItemList.AddRange(listFloorSeven);
-        FloorItemList.AddRange(listFloorEight);
-        FloorItemList.AddRange(listFloorNine);
-        FloorItemList.AddRange(listFloorTen);
+            FloorItemList.AddRange(listFloorTwo);
+            FloorItemList.AddRange(listFloorThree);
+            FloorItemList.AddRange(listFloorFour);
+            FloorItemList.AddRange(listFloorFive);
+            FloorItemList.AddRange(listFloorSix);
+            FloorItemList.AddRange(listFloorSeven);
+            FloorItemList.AddRange(listFloorEight);
+            FloorItemList.AddRange(listFloorNine);
+            FloorItemList.AddRange(listFloorTen);
+        }
 
         return FloorItemList;
     }
