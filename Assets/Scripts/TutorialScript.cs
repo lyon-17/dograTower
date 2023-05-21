@@ -17,6 +17,9 @@ public class TutorialScript : MonoBehaviour
     private GameObject playerIcons;
     private Transform gPlayer;
 
+    private GameObject uiBackground;
+    private Transform gBackground;
+
     private float currentTime;
     private bool canMove = true;
 
@@ -81,6 +84,19 @@ public class TutorialScript : MonoBehaviour
     public TMP_Text text_def_enemy;
     public TMP_Text text_status;
 
+    /*
+     * Contains various sound effects
+     * 0 -> potion
+     * 1 -> atk/def gem
+     * 2 -> key
+     * 3 -> key used
+     * 4 -> Stairs up
+     * 5 -> Stairs down
+     * 
+     */
+    public AudioClip[] SoundsEffect;
+    public AudioClip[] combatSounds;
+
     private void Start()
     {
         tutorial = this;
@@ -90,6 +106,9 @@ public class TutorialScript : MonoBehaviour
 
         playerIcons = GameObject.FindGameObjectWithTag("IconsPlayer");
         gPlayer = playerIcons.transform.GetChild(0);
+
+        uiBackground = GameObject.FindGameObjectWithTag("CanvasBackground");
+        gBackground = uiBackground.transform.GetChild(0);
 
         //Enable icons (exit to the menu shows them)
         gPlayer.gameObject.SetActive(true);
@@ -275,16 +294,18 @@ public class TutorialScript : MonoBehaviour
         {
             potionTrigger(25, collision);
         }
-        if (collision.tag == "RedGem")
+        if (collision.tag == "AtkGem")
         {
             playerAtk++;
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
             CanvasStatsScript.instance.updateStat("atk", playerAtk);
             StartCoroutine(statusValue(1, 1, true));
             collision.gameObject.SetActive(false);
         }
-        if (collision.tag == "BlueGem")
+        if (collision.tag == "DefGem")
         {
             playerDef++;
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
             CanvasStatsScript.instance.updateStat("def", playerDef);
             StartCoroutine(statusValue(0, 1, true));
             collision.gameObject.SetActive(false);
@@ -309,6 +330,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerYellowKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 playerYellowKeys--;
                 StartCoroutine(statusValue(3, 1, false));
@@ -319,6 +341,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerGreenKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 playerGreenKeys--;
                 StartCoroutine(statusValue(4, 1, false));
@@ -329,6 +352,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerRedKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 playerRedKeys--;
                 StartCoroutine(statusValue(5, 1, false));
@@ -339,6 +363,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerBlueKeys > 0)
             {
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
                 collision.gameObject.SetActive(false);
                 playerBlueKeys--;
                 StartCoroutine(statusValue(6, 1, false));
@@ -353,7 +378,9 @@ public class TutorialScript : MonoBehaviour
         }
         if (collision.tag == "StairsUp" && !movedFloors)
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
+            uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, uiBackground.transform.position.y + 19, uiBackground.transform.position.z);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
             enemyIcons.transform.position = new Vector3(enemyIcons.transform.position.x, enemyIcons.transform.position.y, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 19, transform.position.z);
@@ -363,7 +390,9 @@ public class TutorialScript : MonoBehaviour
         }
         if (collision.tag == "StairsDown" && !movedFloors)
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
+            uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, uiBackground.transform.position.y - 19, uiBackground.transform.position.z);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 19, transform.position.z);
             movePoint.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 19, transform.position.z);
@@ -376,6 +405,7 @@ public class TutorialScript : MonoBehaviour
 
     private void potionTrigger(int health, Collider2D potionCollider)
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0]);
         playerHealth += health;
         CanvasStatsScript.instance.updateStat("hp", playerHealth);
         StartCoroutine(statusValue(2, health, true));
@@ -384,6 +414,7 @@ public class TutorialScript : MonoBehaviour
 
     private void keyTrigger(string keyType, Collider2D keyCollider)
     {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2]);
         switch (keyType)
         {
             case "yellow":
@@ -416,6 +447,7 @@ public class TutorialScript : MonoBehaviour
         //To not update the stats.
         activateIcons();
         battleActive = true;
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)]);
         string[] enemyStats = { enemyName, enemyHealth.ToString(), enemyAtk.ToString(), enemyDef.ToString() };
         CanvasStatsScript.instance.updateEnemyStats(enemyStats);
 
