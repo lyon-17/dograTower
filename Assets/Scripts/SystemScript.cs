@@ -93,8 +93,11 @@ public class SystemScript : MonoBehaviour
 
         //Disable the icons to not be shown in the main menu.
         if (GameManager.instance != null)
+        {
             GameManager.instance.disablePlayerIcons();
-        else if(TutorialScript.tutorial != null)
+            GameManager.instance.disableUIBackground();
+        }
+        else if (TutorialScript.tutorial != null)
             TutorialScript.tutorial.disablePlayerIcons();
 
         SceneManager.LoadScene("Intro");
