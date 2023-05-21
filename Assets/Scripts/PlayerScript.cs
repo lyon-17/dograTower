@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject canvasTransition;
     public CanvasRenderer canvasTransitionPanel;
     public TMP_Text canvasTransitionText;
-    //private int floor = 1;
+    private int floor = 1;
 
     //0 def, 1 atk, 2 life, 3 yk, 4 gk, 5 rk, 6 bk
     public TMP_Text text_status;
@@ -129,18 +129,17 @@ public class PlayerScript : MonoBehaviour
     //To wait 1 second before player can move again
     IEnumerator moveFloor()
     {
-        //float currentTime = 1.0f;
-        //float animationTime = 0.1f;
-        //Remove to add a animation
+        float currentTime = 1.0f;
+        float animationTime = 0.1f;
 
-        /*canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
+        canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
         while (currentTime > 0f)
         {
             yield return new WaitForSeconds(animationTime);
             currentTime -= animationTime;
             canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
         }
-        canvasTransitionText.SetText("");*/
+        canvasTransitionText.SetText("");
         yield return new WaitForSeconds(1f);
 
         movedFloors = false;
@@ -321,11 +320,11 @@ public class PlayerScript : MonoBehaviour
         if (collision.tag == "StairsUp" && !movedFloors)
         {
             //Remove comment to make a small animation whenever a floor go up or down
-            /*
-             * canvasTransition.SetActive(true);
+            
+            canvasTransition.SetActive(true);
             floor++;
             canvasTransitionText.text = "Floor " + floor;
-            */
+            
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
@@ -337,11 +336,11 @@ public class PlayerScript : MonoBehaviour
         }
         if(collision.tag == "StairsDown" && !movedFloors)
         {
-            /*
+            
             canvasTransition.SetActive(true);
             floor--;
             canvasTransitionText.text = "Floor " + floor;
-            */
+            
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(-1,false);
@@ -353,6 +352,7 @@ public class PlayerScript : MonoBehaviour
         }
         if(collision.tag == "Vortex")
         {
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[6]);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
