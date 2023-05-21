@@ -402,17 +402,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: -10, y: -73.3}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: -10, y: -125}
->>>>>>> Stashed changes
   m_SizeDelta: {x: 160, y: 30}
-=======
-  m_AnchoredPosition: {x: -10.000999, y: -49.25}
-  m_SizeDelta: {x: 192.71, y: 37.3}
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45954102
 MonoBehaviour:
@@ -903,18 +894,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 739.77, y: 73.999886}
   m_SizeDelta: {x: 175.61, y: 50}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 717.79, y: 73.999886}
-  m_SizeDelta: {x: 219.58, y: 50}
-=======
-  m_AnchoredPosition: {x: 678.2455, y: 66.724205}
-  m_SizeDelta: {x: 175.61, y: 50}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &137041952
 MonoBehaviour:
@@ -1013,11 +994,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137041950}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &166524680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,11 +1103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170123749}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.1885, y: 9.587, z: 0}
-=======
-  m_LocalPosition: {x: 22.03, y: 9.45, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 0.91750014, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1215,11 +1187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184589561}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 18.282, y: 9.587, z: 0}
-=======
-  m_LocalPosition: {x: 17.1235, y: 9.45, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1278,10 +1246,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &199448292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,8 +1475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 111.15}
-  m_SizeDelta: {x: 192.71, y: 39.49}
+  m_AnchoredPosition: {x: -10, y: 109.999985}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226824857
 MonoBehaviour:
@@ -2093,11 +2057,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355801927}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &384054392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,11 +2082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384054392}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 20.277, y: 9.587, z: 0}
-=======
-  m_LocalPosition: {x: 19.118502, y: 9.45, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2186,10 +2141,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &385826382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,11 +2333,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1faf95d22e66da747be15d27c1eee440, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &402745608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,11 +2358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402745608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.922, y: 7.826, z: 0}
-=======
-  m_LocalPosition: {x: 22.763502, y: 7.689, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2475,10 +2417,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1001 &407311404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2706,15 +2644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 14.2, y: 0.01}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 13.51, y: 0.01}
-=======
-  m_AnchoredPosition: {x: 13.058432, y: -0.124997966}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_SizeDelta: {x: 45.2867, y: 49.204}
   m_Pivot: {x: 0.4999994, y: 0.5}
 --- !u!114 &438638449
@@ -2849,18 +2779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 739.77, y: -26.000101}
   m_SizeDelta: {x: 175.61, y: 50}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 717.79, y: -26.000101}
-  m_SizeDelta: {x: 219.58, y: 50}
-=======
-  m_AnchoredPosition: {x: 678.2455, y: -33.27578}
-  m_SizeDelta: {x: 175.61, y: 50}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479650494
 MonoBehaviour:
@@ -2959,11 +2879,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479650492}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &480151939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,11 +2904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480151939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 17.47, y: 6.882, z: 0}
-=======
-  m_LocalPosition: {x: 16.3115, y: 6.745, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3077,11 +2988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507078837}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.922, y: 8.6262, z: 0}
-=======
-  m_LocalPosition: {x: 22.763502, y: 8.4892, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 0.80899996, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3140,10 +3047,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &510969734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,15 +3107,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: New game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
-  m_sharedMaterial: {fileID: -699976295633563165, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281874488
-  m_fontColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3229,13 +3132,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3528,27 +3431,12 @@ MonoBehaviour:
   lastSong: {fileID: 0}
   audioSources:
   - {fileID: 8300000, guid: 93d68baedcd24fc44be1599cdbeb9f69, type: 3}
-<<<<<<< Updated upstream
   - {fileID: 8300000, guid: 37a7e8f01fb966743be8a98c8a59139a, type: 3}
   - {fileID: 8300000, guid: dc698415fccbf4d488cb8c44614f3331, type: 3}
   - {fileID: 8300000, guid: cd23c48aec0ea704494d39ab8b713295, type: 3}
   audioSources2part:
-<<<<<<< Updated upstream
   - {fileID: 8300000, guid: d7595708790159640b5b82cac7ad2273, type: 3}
   - {fileID: 8300000, guid: 924e9adf29ccd7a46906ff9fb1d8e7e9, type: 3}
-=======
-  - {fileID: 8300000, guid: 60c568b6368775b4da3fe419e3f44d46, type: 3}
-  - {fileID: 8300000, guid: 03354ab5c9f26be49be178239ab5d53d, type: 3}
-  - {fileID: 8300000, guid: bc12c8033538f1944b6b2b3cbb9e1c9e, type: 3}
-=======
-  - {fileID: 8300000, guid: dc698415fccbf4d488cb8c44614f3331, type: 3}
-  - {fileID: 8300000, guid: cd23c48aec0ea704494d39ab8b713295, type: 3}
-  audioSources2part:
-  - {fileID: 8300000, guid: d7595708790159640b5b82cac7ad2273, type: 3}
-  - {fileID: 8300000, guid: 924e9adf29ccd7a46906ff9fb1d8e7e9, type: 3}
-  - {fileID: 8300000, guid: 9f38d9923196e5949b59f53e0ef48f3f, type: 3}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   lastFloor: {fileID: 8300000, guid: fcc24404e9dbbc14db71939d9e278a46, type: 3}
 --- !u!82 &519420035
 AudioSource:
@@ -3703,11 +3591,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1faf95d22e66da747be15d27c1eee440, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &546930647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,11 +3616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546930647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.922, y: 3.8382554, z: 0}
-=======
-  m_LocalPosition: {x: 22.763502, y: 3.7012553, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3796,10 +3675,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1001 &592191590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4310,11 +4185,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1faf95d22e66da747be15d27c1eee440, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &746211704
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,11 +4210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746211704}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 18.283, y: 2.65, z: 0}
-=======
-  m_LocalPosition: {x: 17.124502, y: 2.513, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4512,11 +4378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804374916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.922, y: 5.836, z: 0}
-=======
-  m_LocalPosition: {x: 22.763502, y: 5.699, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4659,10 +4521,6 @@ Transform:
   m_Father: {fileID: 1674364255}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &873428440
 GameObject:
   m_ObjectHideFlags: 0
@@ -17763,15 +17621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 14.23, y: 0.8749161}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 13.51, y: 0.8749161}
-=======
-  m_AnchoredPosition: {x: 13.088431, y: 0.7399181}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_SizeDelta: {x: 45, y: 50}
   m_Pivot: {x: 0.4999994, y: 0.5}
 --- !u!114 &1020418863
@@ -18045,18 +17895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 739.77, y: 23.999937}
   m_SizeDelta: {x: 175.61, y: 50}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 717.79, y: 23.999937}
-  m_SizeDelta: {x: 219.58, y: 50}
-=======
-  m_AnchoredPosition: {x: 678.2455, y: 16.724258}
-  m_SizeDelta: {x: 175.61, y: 50}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051803053
 MonoBehaviour:
@@ -18518,15 +18358,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Load game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
-  m_sharedMaterial: {fileID: -699976295633563165, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281874488
-  m_fontColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18543,13 +18383,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -18687,8 +18527,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -0.00001651}
-  m_SizeDelta: {x: 192.71, y: 35.84}
+  m_AnchoredPosition: {x: -9.999878, y: 1.9999924}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1086213929
 MonoBehaviour:
@@ -19395,8 +19235,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19463,11 +19303,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180399094}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1198977414
 GameObject:
   m_ObjectHideFlags: 0
@@ -19493,11 +19328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198977414}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 20.28, y: 2.65, z: 0}
-=======
-  m_LocalPosition: {x: 19.121502, y: 2.513, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19556,10 +19387,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1001 &1219118622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19944,7 +19771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -20029,8 +19856,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit to Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
-  m_sharedMaterial: {fileID: -699976295633563165, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20054,13 +19881,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -21395,8 +21222,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.000999, y: 51.72}
-  m_SizeDelta: {x: 192.71, y: 36.57}
+  m_AnchoredPosition: {x: -9.999878, y: 54.99999}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514692676
 MonoBehaviour:
@@ -21704,15 +21531,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Save game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
-  m_sharedMaterial: {fileID: -699976295633563165, guid: bd74e1da38a2bb64a88f010c983a043b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281874488
-  m_fontColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -21729,13 +21556,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -22195,13 +22022,6 @@ Transform:
   m_LocalScale: {x: 1, y: 0.9942, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-  m_Father: {fileID: 1764654907}
-  m_RootOrder: 0
-=======
->>>>>>> Stashed changes
   m_Father: {fileID: 1674364255}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -22230,20 +22050,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594101273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 17.47, y: 3.8462, z: 0}
-=======
-  m_LocalPosition: {x: 16.3115, y: 3.7092, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1.0098, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1674364255}
   m_RootOrder: 6
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1594101275
 SpriteRenderer:
@@ -22489,11 +22301,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedad8d335e4f074c93150d45f068cd1, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1657873121
 GameObject:
   m_ObjectHideFlags: 0
@@ -22519,11 +22326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657873121}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 17.47, y: 8.4, z: 0}
-=======
-  m_LocalPosition: {x: 16.3115, y: 8.263, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22607,11 +22410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658625110}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 22.275, y: 9.587, z: 0}
-=======
-  m_LocalPosition: {x: 21.1165, y: 9.45, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22670,10 +22469,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1001 &1672180750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22731,11 +22526,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedad8d335e4f074c93150d45f068cd1, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1674364254
 GameObject:
   m_ObjectHideFlags: 0
@@ -22841,11 +22631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718266150}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 22.267, y: 2.65, z: 0}
-=======
-  m_LocalPosition: {x: 21.108501, y: 2.513, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22904,10 +22690,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &1724869996
 GameObject:
   m_ObjectHideFlags: 0
@@ -22986,7 +22768,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!224 &1724870000
 RectTransform:
@@ -23431,11 +23213,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedad8d335e4f074c93150d45f068cd1, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1813294918
 GameObject:
   m_ObjectHideFlags: 0
@@ -23461,11 +23238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813294918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 17.47, y: 4.88, z: 0}
-=======
-  m_LocalPosition: {x: 16.3115, y: 4.743, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23524,10 +23297,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1001 &1846888057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23585,11 +23354,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1faf95d22e66da747be15d27c1eee440, type: 3}
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1850553135
 GameObject:
   m_ObjectHideFlags: 0
@@ -23667,21 +23431,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850553135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 20.6991, y: 6.13, z: 0}
-=======
-  m_LocalPosition: {x: 19.540602, y: 5.993, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 3.1781, y: 3.4081, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1674364255}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &1902414764
 GameObject:
   m_ObjectHideFlags: 0
@@ -23717,15 +23473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 14.19, y: 1.78}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 13.49, y: 1.78}
-=======
-  m_AnchoredPosition: {x: 13.048431, y: 1.645002}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_SizeDelta: {x: 45, y: 50}
   m_Pivot: {x: 0.4999994, y: 0.5}
 --- !u!114 &1902414766
@@ -39970,11 +39718,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 --- !u!1 &1924221746
 GameObject:
   m_ObjectHideFlags: 0
@@ -40252,11 +39995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974523825}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 23.19, y: 2.65, z: 0}
-=======
-  m_LocalPosition: {x: 22.031502, y: 2.513, z: 0}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 0.9200002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40315,10 +40054,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 --- !u!1 &2015409107
 GameObject:
   m_ObjectHideFlags: 0
@@ -40962,18 +40697,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 728.71, y: -82.10006}
   m_SizeDelta: {x: 315.83, y: 50}
-=======
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 676.79, y: -82.10006}
-  m_SizeDelta: {x: 301.57, y: 50}
-=======
-  m_AnchoredPosition: {x: 667.1855, y: -89.37574}
-  m_SizeDelta: {x: 315.83, y: 50}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6111648616347751765
 MonoBehaviour:
