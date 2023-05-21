@@ -68,6 +68,7 @@ public class PlayerScript : MonoBehaviour
         {
             int times = (int) Rigidbody2D.position.y / 19;
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + (19 * times), Camera.main.transform.position.z);
+            GameManager.instance.moveUIBackground(times,true);
         }
     }
 
@@ -327,6 +328,7 @@ public class PlayerScript : MonoBehaviour
             */
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
+            GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 19, transform.position.z);
             movePoint.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 19, transform.position.z);
@@ -342,6 +344,7 @@ public class PlayerScript : MonoBehaviour
             */
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
+            GameManager.instance.moveUIBackground(-1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 19, transform.position.z);
             movePoint.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 19, transform.position.z);
@@ -351,6 +354,7 @@ public class PlayerScript : MonoBehaviour
         if(collision.tag == "Vortex")
         {
             canMoveFloors = false;
+            GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 8, transform.position.z);
             movePoint.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 8, transform.position.z);

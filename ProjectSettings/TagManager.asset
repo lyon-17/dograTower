@@ -37,6 +37,7 @@ TagManager:
   - Dogra
   - AtkGem
   - DefGem
+  - CanvasBackground
   layers:
   - Default
   - TransparentFX

@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     private static GameObject player, movePoint;
 
     //To disable/enable icons beetwen scenes.
-    private GameObject enemyIcons, playerIcons;
-    private Transform gEnemy, gPlayer;
+    private GameObject enemyIcons, playerIcons,uiBackground;
+    private Transform gEnemy, gPlayer, gBackground;
 
     //Refresh the current scene as "creating" a new one
     private static bool refresh = false;
@@ -104,8 +104,12 @@ public class GameManager : MonoBehaviour
         playerIcons = GameObject.FindGameObjectWithTag("IconsPlayer");
         gPlayer = playerIcons.transform.GetChild(0);
 
+        uiBackground = GameObject.FindGameObjectWithTag("CanvasBackground");
+        gBackground = uiBackground.transform.GetChild(0);
+
         gEnemy.gameObject.SetActive(false);
         gPlayer.gameObject.SetActive(true);
+        gBackground.gameObject.SetActive(true);
         //Keeps the first canvas (holds the stats text) created
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
@@ -121,6 +125,17 @@ public class GameManager : MonoBehaviour
                     Destroy(canva);
                 }
             }
+
+            GameObject[] uiBackgrounds = GameObject.FindGameObjectsWithTag("CanvasBackground");
+            foreach (GameObject uiBack in uiBackgrounds)
+            {
+                if (!uiBack.Equals(uiBackground))
+                {
+                    Destroy(uiBack);
+                }
+            }
+
+            uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, 0, uiBackground.transform.position.z);
 
             loadItems();
             int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys,playerRedKeys,playerBlueKeys };
@@ -163,6 +178,7 @@ public class GameManager : MonoBehaviour
         //Don't destroy the gameManager and first canvas when changing scenes
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(canvas);
+        DontDestroyOnLoad(uiBackground);
     }
 
     public static void startNew()
@@ -490,6 +506,18 @@ public class GameManager : MonoBehaviour
         gPlayer.gameObject.SetActive(false);
     }
 
+    public void disableUIBackground()
+    {
+        gBackground.gameObject.SetActive(false);
+    }
+    public void moveUIBackground(int times, bool load)
+    {
+        float originY = uiBackground.transform.position.y;
+        if (load)
+            originY = 0;
+        uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, originY + (19 * times), uiBackground.transform.position.z);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -498,13 +526,14 @@ public class GameManager : MonoBehaviour
             CanvasStatsScript.instance.cleanAllStats();
             disablePlayerIcons();
             disactivateIcons();
+            disableUIBackground();
             SceneManager.LoadScene("GameOver");
         }
         //temp, remove when needed
-        if (floor != 10)
+        /*if (floor != 10)
         {
             int y = (int)player.GetComponent<Rigidbody2D>().position.y;
             floor = y / 19;
-        }
+        }*/
     }
 }
