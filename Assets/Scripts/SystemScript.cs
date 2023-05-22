@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 //Manages the system commands (new, load and save) interactions beetwen scenes and script.
 public class SystemScript : MonoBehaviour
@@ -22,6 +23,9 @@ public class SystemScript : MonoBehaviour
         {
             menuCanvas.gameObject.SetActive(false);
             showLoad = false;
+            SaveLoad.Load();
+            //Refresh the save list whenever the game is opened again
+
         }
     }
 
@@ -31,7 +35,6 @@ public class SystemScript : MonoBehaviour
         if (showLoad)
         {
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(250), GUILayout.Height(200));
-
             GUILayout.Box("Select Save File");
             GUILayout.Space(10);
             int game = 0;
@@ -43,12 +46,11 @@ public class SystemScript : MonoBehaviour
                     if (GameSave.current == null)
                         GameSave.current = new GameSave();
                     GameManager.instance.canvas.SetActive(true);
+                    //Move on to game...
                     SceneManager.LoadScene(1);
                     GameSave.current = g;
                     GameManager.getStats();
                     GameManager.refreshData();
-                    //Move on to game...
-
                 }
                 game++;
             }
