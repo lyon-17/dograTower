@@ -16,13 +16,15 @@ public class PlayerScript : MonoBehaviour
      * 3 -> key used
      * 4 -> Stairs up
      * 5 -> Stairs down
-     * 
+     * 6 -> Abyss
      */
 
     public AudioClip[] SoundsEffect;
+    public AudioClip[] playerMoveEffects;
 
     private float currentTime;
     private bool canMove = true;
+    private int _moveEffect = 0;
 
     //disable/enable movement while menu is open
     [HideInInspector]
@@ -172,6 +174,11 @@ public class PlayerScript : MonoBehaviour
                 {
                     //Move the character in X coord.
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect]);
+                    if (_moveEffect == 0)
+                        _moveEffect = 1;
+                    else
+                        _moveEffect = 0;
                 }
             }
             //For Y movement
@@ -180,8 +187,14 @@ public class PlayerScript : MonoBehaviour
                 if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect]);
+                    if (_moveEffect == 0)
+                        _moveEffect = 1;
+                    else
+                        _moveEffect = 0;
                 }
             }
+            
         }
     }
 
