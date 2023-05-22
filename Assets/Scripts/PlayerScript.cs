@@ -337,7 +337,8 @@ public class PlayerScript : MonoBehaviour
             canvasTransition.SetActive(true);
             floor++;
             canvasTransitionText.text = "Floor " + floor;
-            
+            GameManager.instance.setFloor(floor);
+
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
@@ -353,6 +354,7 @@ public class PlayerScript : MonoBehaviour
             canvasTransition.SetActive(true);
             floor--;
             canvasTransitionText.text = "Floor " + floor;
+            GameManager.instance.setFloor(floor);
             
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
@@ -372,7 +374,7 @@ public class PlayerScript : MonoBehaviour
             Rigidbody2D.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 8, transform.position.z);
             movePoint.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 8, transform.position.z);
             movedFloors = true;
-            GameManager.instance.floor = 10;
+            GameManager.instance.setFloor(10);
             StartCoroutine(moveFloor());
         }
 

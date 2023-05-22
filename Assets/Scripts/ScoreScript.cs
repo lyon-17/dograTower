@@ -11,6 +11,11 @@ public class ScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Disable/hide the UI
+        CanvasStatsScript.instance.cleanAllStats();
+        GameManager.instance.disablePlayerIcons();
+        GameManager.instance.disableUIBackground();
+
         int score =
             GameManager.playerHealth / 25 +
             GameManager.playerAtk * 5 +

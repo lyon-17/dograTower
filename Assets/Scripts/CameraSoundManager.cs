@@ -40,21 +40,21 @@ public class CameraSoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.floor >= 6 && !highFloors)
+        if(GameManager.instance.getFloor() >= 6 && !highFloors)
         {
             highFloors = true;
             randomAudio();
         }
-        if (GameManager.instance.floor <= 5 && highFloors)
+        if (GameManager.instance.getFloor() <= 5 && highFloors)
         {
             highFloors = false;
             randomAudio();
         }
-        if(GameManager.instance.floor == 10 && !lastPlay)
+        if(GameManager.instance.getFloor() == 10 && !lastPlay)
         {
             playFinale();
         }
-        if (!randomSong.isPlaying && GameManager.instance.floor != 10)
+        if (!randomSong.isPlaying && GameManager.instance.getFloor() != 10)
         {
             randomAudio();
         }

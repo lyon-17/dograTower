@@ -93,8 +93,7 @@ public class GameManager : MonoBehaviour
 
     public bool battleActive = false;
     private float currentTime;
-    //Current floor, testing for audio (remove later)
-    public int floor = 0;
+    private int _floor = 0;
     void Awake()
     {
         //Update the icons in the UI
@@ -493,7 +492,6 @@ public class GameManager : MonoBehaviour
     {
         gPlayer.gameObject.SetActive(false);
     }
-
     public void disableUIBackground()
     {
         gBackground.gameObject.SetActive(false);
@@ -504,6 +502,16 @@ public class GameManager : MonoBehaviour
         if (load)
             originY = 0;
         uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, originY + (19 * times), uiBackground.transform.position.z);
+    }
+
+    public void setFloor(int floor)
+    {
+        _floor = floor;
+    }
+
+    public int getFloor()
+    {
+        return _floor;
     }
 
     // Update is called once per frame
