@@ -131,21 +131,24 @@ public class PlayerScript : MonoBehaviour
     //To wait 1 second before player can move again
     IEnumerator moveFloor()
     {
-        float currentTime = 1.0f;
-        float animationTime = 0.1f;
-
-        canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
+        //float currentTime = 1.0f;
+        //float animationTime = 0.1f;
+        //Animation hides background images
+        /*canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
         while (currentTime > 0f)
         {
             yield return new WaitForSeconds(animationTime);
             currentTime -= animationTime;
             canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
         }
-        canvasTransitionText.SetText("");
+        canvasTransitionText.SetText("");*/
+        
         yield return new WaitForSeconds(1f);
-
         movedFloors = false;
         canMoveFloors = true;
+        canvasTransition.SetActive(false);
+
+
     }
 
     //Stop move, that's is. Move the point to the closest player cell.
