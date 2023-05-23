@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     private GameObject enemyIcons, playerIcons,uiBackground;
     private Transform gEnemy, gPlayer, gBackground;
 
+    private static bool _loadStats = false;
+
     //Refresh the current scene as "creating" a new one
     private static bool refresh = false;
     //To set the player position to the beggining
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
     private int _floor = 0;
     void Awake()
     {
+        
         //Update the icons in the UI
         enemyIcons = GameObject.FindGameObjectWithTag("Icons");
         gEnemy = enemyIcons.transform.GetChild(0);
@@ -111,6 +114,17 @@ public class GameManager : MonoBehaviour
         gBackground.gameObject.SetActive(true);
         //Keeps the first canvas (holds the stats text) created
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        if (GameSave.current != null)
+        {
+            if (GameSave.current.getLoad())
+            {
+                getStats();
+                //refreshData();
+                //GameSave.current.setLoad(false);
+                _loadStats = true;
+            }
+        }
 
         //Need to refresh the scene
         if (refresh)
@@ -206,29 +220,33 @@ public class GameManager : MonoBehaviour
         EnemyStatList.loadDictionary();
         //mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //Initialize the gameSave to save
-        GameSave.current = new GameSave();
-        playerHealth = GameSave.current.gameData.playerHealth;
-        playerAtk = GameSave.current.gameData.playerAtk;
-        playerDef = GameSave.current.gameData.playerDef;
-        playerYellowKeys = GameSave.current.gameData.playerYellowKeys;
-        playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
-        playerRedKeys = GameSave.current.gameData.playerRedKeys;
-        playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
-        text_hp.text = ": " + playerHealth;
-        text_atk.text = ": " + playerAtk;
-        text_def.text = ": " + playerDef;
-        text_yk.text = ": " + playerYellowKeys;
-        text_gk.text = ": " + playerGreenKeys;
-        text_rk.text = ": " + playerRedKeys;
-        text_bk.text = ": " + playerBlueKeys;
-        GameSave.current.itemList = new List<Item>();
+        if (!_loadStats)
+        {
+            GameSave.current = new GameSave();
+            playerHealth = GameSave.current.gameData.playerHealth;
+            playerAtk = GameSave.current.gameData.playerAtk;
+            playerDef = GameSave.current.gameData.playerDef;
+            playerYellowKeys = GameSave.current.gameData.playerYellowKeys;
+            playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
+            playerRedKeys = GameSave.current.gameData.playerRedKeys;
+            playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
+            text_hp.text = ": " + playerHealth;
+            text_atk.text = ": " + playerAtk;
+            text_def.text = ": " + playerDef;
+            text_yk.text = ": " + playerYellowKeys;
+            text_gk.text = ": " + playerGreenKeys;
+            text_rk.text = ": " + playerRedKeys;
+            text_bk.text = ": " + playerBlueKeys;
+            GameSave.current.itemList = new List<Item>();
+            managerItemList = ItemsList.getList();
+        }
         int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys, playerRedKeys, playerBlueKeys };
         //Call to the stats script to refresh the text with the player stats
         CanvasStatsScript.instance.updatePlayerStats(playerStats);
-        managerItemList = ItemsList.getList();
-        //Add items to the local list
-        loadItems();
-        player = GameObject.FindGameObjectWithTag("Player");
+            //Add items to the local list
+            loadItems();
+            player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     //Load items from the local list and turns to object added into the scene
@@ -368,6 +386,7 @@ public class GameManager : MonoBehaviour
         playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
         playerRedKeys = GameSave.current.gameData.playerRedKeys;
         playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
+
         //Player position
         if (player != null)
             player.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
@@ -375,6 +394,7 @@ public class GameManager : MonoBehaviour
             loadFromMenu = true;
         //Items in the scene
         managerItemList = GameSave.current.itemList;
+        
     }
 
     //Info from manager and updates the gameSave
@@ -423,6 +443,13 @@ public class GameManager : MonoBehaviour
         {
             loadedX = GameSave.current.gameData.playerX;
             loadedY = GameSave.current.gameData.playerY;
+        }
+        if (_loadStats)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
+            movePoint.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+            player.GetComponent<Rigidbody2D>().position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
         }
         //Create a new gameSave
         GameSave.current = new GameSave();
@@ -524,6 +551,12 @@ public class GameManager : MonoBehaviour
             disactivateIcons();
             disableUIBackground();
             SceneManager.LoadScene("GameOver");
+        }
+        if (_loadStats)
+        {
+            refreshData();
+            
+            _loadStats = false;
         }
         //temp, remove when needed
         /*if (floor != 10)

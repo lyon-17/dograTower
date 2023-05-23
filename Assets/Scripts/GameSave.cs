@@ -14,11 +14,22 @@ public class GameSave
     //Testing
     public GameData gameData;
     public List<Item> itemList;
+    private bool _loadLater = false;
 
     public GameSave()
     {
         itemList = new List<Item>();
         gameData = new GameData();
+    }
+
+    public void setLoad(bool loadLater)
+    {
+        _loadLater = loadLater;
+    }
+
+    public bool getLoad()
+    {
+        return _loadLater;
     }
 
 }

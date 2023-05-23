@@ -23,7 +23,7 @@ public class SystemScript : MonoBehaviour
         {
             menuCanvas.gameObject.SetActive(false);
             showLoad = false;
-            SaveLoad.Load();
+            
             //Refresh the save list whenever the game is opened again
 
         }
@@ -38,19 +38,27 @@ public class SystemScript : MonoBehaviour
             GUILayout.Box("Select Save File");
             GUILayout.Space(10);
             int game = 0;
-
+            SaveLoad.Load();
             foreach (GameSave g in SaveLoad.savedGames)
             {
                 if (GUILayout.Button("Game number: " + game + ". HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef))
                 {
                     if (GameSave.current == null)
+                    {
+                        
                         GameSave.current = new GameSave();
-                    GameManager.instance.canvas.SetActive(true);
+                        GameSave.current = g;
+                        GameSave.current.setLoad(true);
+                    }
+                    else
+                    {
+                        GameManager.instance.canvas.SetActive(true);
+                        GameSave.current = g;
+                        GameManager.getStats();
+                        GameManager.refreshData();
+                    }
                     //Move on to game...
                     SceneManager.LoadScene(1);
-                    GameSave.current = g;
-                    GameManager.getStats();
-                    GameManager.refreshData();
                 }
                 game++;
             }
