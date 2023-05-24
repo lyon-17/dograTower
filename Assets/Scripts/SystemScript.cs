@@ -58,7 +58,7 @@ public class SystemScript : MonoBehaviour
                         GameManager.refreshData();
                     }
                     //Move on to game...
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene("FirstTower");
                 }
                 game++;
             }
@@ -70,13 +70,18 @@ public class SystemScript : MonoBehaviour
     //Restart the entire tower
     public void StartGame()
     {
-        SceneManager.LoadScene("FirstTower");
+        //Skips introduction if player select new game after a first time.
         if (GameManager.instance != null)
         {
+            SceneManager.LoadScene("FirstTower");
             //Shows the stats if it is disabled.
             if(!GameManager.instance.canvas.activeInHierarchy)
                 GameManager.instance.canvas.SetActive(true);
             GameManager.startNew();
+        }
+        else
+        {
+            SceneManager.LoadScene("Introduction");
         }
     }   
 
