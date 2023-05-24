@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FirstTower.unity
     guid: c5d6fe6c79aec9646a420606fc569708
   - enabled: 1
+    path: Assets/Scenes/Introduction.unity
+    guid: 0891d90b219dd514eaa0ea788553c726
+  - enabled: 1
     path: Assets/Scenes/TutorialTower.unity
     guid: 23cf7ae3c3b0e134980a5329af880a29
   - enabled: 1
