@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
+/**
+ * Holds the music
+ */
 public class CameraSoundManager : MonoBehaviour
 {
     public AudioSource randomSong;

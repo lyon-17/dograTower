@@ -38,6 +38,9 @@ public class CanvasStatsScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    /**
+     * Update all the stats
+     */
     public void updatePlayerStats(int[] stats)
     {
         text_hp.text = ": "+stats[0].ToString();
@@ -48,7 +51,8 @@ public class CanvasStatsScript : MonoBehaviour
         text_rk.text = ": " + stats[5].ToString();
         text_bk.text = ": " + stats[6].ToString();
     }
-    //Update the UI with new values
+
+    //Update the UI with a new value
     public void updateStat(string type, int number)
     {
         string text = ": "+number.ToString();
@@ -80,6 +84,7 @@ public class CanvasStatsScript : MonoBehaviour
                 break;
         }
     }
+    //Update UI with combat (remove expected damage)
     public void updateEnemyStats(string[] enemyStats)
     {
         if (GameManager.instance != null)
@@ -90,8 +95,9 @@ public class CanvasStatsScript : MonoBehaviour
         text_hp_enemy.SetText(": " + enemyStats[1]);
         text_atk_enemy.SetText(": " + enemyStats[2]);
         text_def_enemy.SetText(": " + enemyStats[3]);
+        textdmg.SetText("");
     }
-    //Update the enemies stats whenever there's a combat
+    //Update the enemies stats whenever there isn't a combat
     public void updateStats(string[] stats)
     {
         if (GameManager.instance != null)
@@ -132,17 +138,5 @@ public class CanvasStatsScript : MonoBehaviour
         text_hp_enemy.SetText(" ");
         text_atk_enemy.SetText(" ");
         text_def_enemy.SetText(" ");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
