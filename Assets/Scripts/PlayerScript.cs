@@ -378,6 +378,7 @@ public class PlayerScript : MonoBehaviour
         if (!_battleEncounter)
         {
             int[] stats = EnemyStatList.enemyListing[enemyName];
+            
             GameManager.instance.enemyName = showName;
             GameManager.instance.enemyHealth = stats[0];
             GameManager.instance.enemyAtk = stats[1];
@@ -386,6 +387,8 @@ public class PlayerScript : MonoBehaviour
             if(GameManager.playerAtk - stats[2] <= 0)
             {
                 stopMove();
+                string[] eStats = { showName, stats[0].ToString(), stats[1].ToString(), stats[2].ToString(), "Can't be hurt" };
+                CanvasStatsScript.instance.updateStats(eStats);
                 return;
             }
         }

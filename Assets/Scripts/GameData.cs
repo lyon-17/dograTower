@@ -20,7 +20,7 @@ public class GameData
 
     public GameData()
     {
-        playerHealth = 500;
+        playerHealth = 50;
         playerAtk = 10;
         playerDef = 5;
         playerYellowKeys = 0;

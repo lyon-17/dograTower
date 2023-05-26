@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     private int _floor = 1;
 
     //Check if player have been defeated
-    private bool _defeated = false;
+    private static bool _defeated = false;
 
     //Base player stats
 
@@ -123,8 +123,7 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
-        //Defeated turned into false whenever the main game is loaded
-        _defeated = false;
+        
         //Update the icons in the UI
         enemyIcons = GameObject.FindGameObjectWithTag("Icons");
         gEnemy = enemyIcons.transform.GetChild(0);
@@ -222,6 +221,8 @@ public class GameManager : MonoBehaviour
      */
     public static void startNew()
     {
+        //Defeated turned into false whenever a new game is started
+        _defeated = false;
         //Create a new gameSave
         GameSave.current = new GameSave();
         //Create new player values
@@ -235,7 +236,6 @@ public class GameManager : MonoBehaviour
         //Generates a new list and update the scene adding them
         _managerItemList = ItemsList.getList();
         GameSave.current.itemList = _managerItemList;
-
         _refresh = true;
         _newGame = true;
     }

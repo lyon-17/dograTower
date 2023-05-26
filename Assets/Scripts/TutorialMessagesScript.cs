@@ -42,13 +42,13 @@ public class TutorialMessagesScript : MonoBehaviour
             if (tutEvent == 5 && TutorialScript.tutorial.playerYellowKeys == 1)
                 tutEvent = 6;
             if (tutEvent == 6)
-                text_tut.text = "En muchisimas ocasiones tendras varias opciones y meditar que pasos debes seguir. En este caso derrota al monstruo y no uses la llave que acabas de conseguir";
+                text_tut.text = "A lo largo de la aventura tendras que meditar sobre los pasos debes seguir. En este caso derrota al monstruo y no uses la llave amarilla";
             if (tutEvent == 6 && TutorialScript.tutorial.getPlayerPositionX() == 10 && TutorialScript.tutorial.getPlayerPositionY() == 4)
                 text_tut.text = "Decidiste ignorarme y ahora no puedes continuar. Tu unica opcion es reiniciar o salir del tutorial.";
             if (tutEvent == 6 && TutorialScript.tutorial.getPlayerPositionX() == 13 && TutorialScript.tutorial.getPlayerPositionY() == 0)
                 tutEvent = 7;
             if (tutEvent == 7)
-                text_tut.text = "Posiblemente te hayas dado cuenta, pero puedes ver las estadisticas de los monstruos y la vida que te quitan si pones el raton encima de ellos";
+                text_tut.text = "Puedes ver las estadisticas de los monstruos y la vida que te quitan si pones el raton encima de ellos.";
             if (TutorialScript.tutorial.getPlayerPositionX() == 5 && TutorialScript.tutorial.getPlayerPositionY() == 11 && tutEvent == 7)
                 tutEvent = 8;
             if(tutEvent == 8)
@@ -56,6 +56,6 @@ public class TutorialMessagesScript : MonoBehaviour
             if (TutorialScript.tutorial.getPlayerPositionY() > 19)
                 tutEvent = 9;
             if (tutEvent == 9)
-                text_tut.text = "Con lo aprendido intenta obtener la pocion grande. Con ello el tutorial se da por terminado.";
+                text_tut.text = "Con lo aprendido intenta obtener la pocion grande. Con ello el tutorial finalizara.";
     }
 }

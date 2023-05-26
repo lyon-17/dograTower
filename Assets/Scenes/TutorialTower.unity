@@ -16057,8 +16057,17 @@ MonoBehaviour:
   text_atk_enemy: {fileID: 2055231885}
   text_def_enemy: {fileID: 968122378}
   text_status: {fileID: 1799162627}
-  SoundsEffect: []
-  combatSounds: []
+  SoundsEffect:
+  - {fileID: 8300000, guid: 247c6ac5ffde52645a7cf8b501ebb53d, type: 3}
+  - {fileID: 8300000, guid: f8c4804607ff9ce4fb83e3ee6af406e9, type: 3}
+  - {fileID: 8300000, guid: 3cdd1ec410f9e554e8a0c62372c0c12b, type: 3}
+  - {fileID: 8300000, guid: be6f20f04ac9ae546ad53764b55facaf, type: 3}
+  - {fileID: 8300000, guid: 7fe5f2405182bac4dae4b0085f4bf1c5, type: 3}
+  - {fileID: 8300000, guid: 85974a3986096f94aa6ed3db59be0188, type: 3}
+  combatSounds:
+  - {fileID: 8300000, guid: 996dfc8700a5a5f438530419fb94c020, type: 3}
+  - {fileID: 8300000, guid: 7be6df506b8d93e44ab18eb4167a03e5, type: 3}
+  - {fileID: 8300000, guid: 33c8915a7868e5448b092bc63198e4b6, type: 3}
 --- !u!1 &1654437116
 GameObject:
   m_ObjectHideFlags: 0
@@ -18246,8 +18255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -83, y: -454}
-  m_SizeDelta: {x: 728.3, y: 64.03}
+  m_AnchoredPosition: {x: 0.0000076293945, y: -444.99997}
+  m_SizeDelta: {x: 1301.15, y: 94.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856350356
 MonoBehaviour:
