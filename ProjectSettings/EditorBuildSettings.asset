@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialTower.unity
     guid: 23cf7ae3c3b0e134980a5329af880a29
   - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: bb1efd67379c17d40bf79aa2e555e307
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 3f9cb736b5dd2f94d894698cf77fcc26
   - enabled: 1
