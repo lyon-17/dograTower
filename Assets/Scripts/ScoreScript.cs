@@ -15,24 +15,33 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         //Disable/hide the UI
-        /*CanvasStatsScript.instance.cleanAllStats();
+        CanvasStatsScript.instance.cleanAllStats();
         GameManager.instance.disablePlayerIcons();
         GameManager.instance.disableUIBackground();
 
+        //Score is calculated as
+        /*
+         * health * 25
+         * atk * 5
+         * def * 5
+         * yk * 200
+         * gk * 350
+         * rk * 500
+         */
         int score =
             GameManager.playerHealth / 25 +
             GameManager.playerAtk * 5 +
             GameManager.playerDef * 5 +
-            GameManager.playerYellowKeys * 3 +
-            GameManager.playerGreenKeys * 5 +
-            GameManager.playerRedKeys * 6;
-        text_score.SetText(score.ToString());*/
+            GameManager.playerYellowKeys * 200 +
+            GameManager.playerGreenKeys * 350 +
+            GameManager.playerRedKeys * 600;
+        text_score.SetText(score.ToString());
         
     }
-    private void Update()
-    {
-        
-    }
+
+    /**
+     * Move the credits after 2 seconds.
+     */
     private void Awake()
     {
         if (_startAnimation)

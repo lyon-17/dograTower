@@ -9,11 +9,14 @@ public class IntroductionScript : MonoBehaviour
 
     public TMP_Text text_load;
 
+    /**
+     * Loading... text invisible at start
+     */
     private void Start()
     {
         text_load.faceColor = new Color32(0, 0, 0, 0);
     }
-    // Update is called once per frame
+    // Any key will load the main game
     void Update()
     {
         if (Input.anyKeyDown)

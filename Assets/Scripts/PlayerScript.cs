@@ -22,8 +22,9 @@ public class PlayerScript : MonoBehaviour
     public AudioClip[] SoundsEffect;
     public AudioClip[] playerMoveEffects;
 
-    private float currentTime;
-    private bool canMove = true;
+    private float _currentTime;
+    //Disable/enable movement if a combat is happening
+    private bool _canMove = true;
     private int _moveEffect = 0;
 
     //disable/enable movement while menu is open
@@ -31,10 +32,10 @@ public class PlayerScript : MonoBehaviour
     public bool disable = false;
 
     //Check if the battle is active, stops movement and do battle until it finished
-    private bool battleActive = false;
+    private bool _battleActive = false;
 
     //Check if there's an encounter
-    private bool battleEncounter = false;
+    private bool _battleEncounter = false;
 
     //Check to stop in stairs and then enabled them after move
     public bool movedFloors = false;
@@ -53,7 +54,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject canvasTransition;
     public CanvasRenderer canvasTransitionPanel;
     public TMP_Text canvasTransitionText;
-    private int floor = 1;
+    private int _floor = 1;
+    private bool _setFloor = true;
 
     //0 def, 1 atk, 2 life, 3 yk, 4 gk, 5 rk, 6 bk
     public TMP_Text text_status;
@@ -66,53 +68,55 @@ public class PlayerScript : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         movePoint.parent = null;
         canvasTransition.SetActive(false);
+
+        /**
+         * Set the camera to the current floor
+         */
         if(Rigidbody2D.position.y > 19)
         {
             int times = (int) Rigidbody2D.position.y / 19;
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + (19 * times), Camera.main.transform.position.z);
             GameManager.instance.moveUIBackground(times,true);
+            _floor = GameSave.current.getFloor();
         }
     }
 
     void Update()
     {
+        if(_setFloor && _floor != GameSave.current.getFloor())
+        {
+            _floor = GameSave.current.getFloor();
+            _setFloor = false;
+        }
         text_status.transform.position = new Vector3(Rigidbody2D.transform.position.x+2f, Rigidbody2D.transform.position.y+1.5f, Rigidbody2D.transform.position.z);
         if (!disable)
         {
-            if (canMove && canMoveFloors)
+            if (_canMove && canMoveFloors)
             {
                 Move();
             }
             //Wait a small timve (400ms) before trying to move again
-            if (!canMove && !battleEncounter && Time.time > currentTime + 0.4f)
+            if (!_canMove && !_battleEncounter && Time.time > _currentTime + 0.4f)
             {
-                canMove = true;
-                currentTime = Time.time;
+                _canMove = true;
+                _currentTime = Time.time;
             }
-            //Battle attempt, should be a round every X time.
-            if (battleActive && battleEncounter && Time.time > currentTime + 0.85)
+            //Battle attempt, a round every 0.85 seconds.
+            if (_battleActive && _battleEncounter && Time.time > _currentTime + 0.85)
             {
-                //InitBattle(battleCollider);
-                battleActive = GameManager.instance.initBattle();
+                _battleActive = GameManager.instance.initBattle();
                 //Player receive dmg only when battle is active
-                if (battleActive)
+                if (_battleActive)
                     StartCoroutine(statusValue(2, GameManager.instance.enemyDmg, false, true, true, GameManager.instance.enemyCollider));
                 StartCoroutine(statusValue(2, GameManager.instance.playerDmg, false, true, false, GameManager.instance.enemyCollider));
-                currentTime = Time.time;
+                _currentTime = Time.time;
             }
             //restore movement and allows new encounters when battle is finished
-            if (!battleActive)
+            if (!_battleActive)
             {
-                canMove = true;
-                battleEncounter = false;
+                _canMove = true;
+                _battleEncounter = false;
             }
-                
-            /*if (movedFloors && Time.time > currentTime + waitingTime)
-            {
-                movedFloors = false;
-                canMoveFloors = true;
-                currentTime = Time.time;
-            }*/
         }
         if (disable && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -128,27 +132,14 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //To wait 1 second before player can move again
+    //Wait 1 second before player can move again
     IEnumerator moveFloor()
     {
-        //float currentTime = 1.0f;
-        //float animationTime = 0.1f;
-        //Animation hides background images
-        /*canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
-        while (currentTime > 0f)
-        {
-            yield return new WaitForSeconds(animationTime);
-            currentTime -= animationTime;
-            canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
-        }
-        canvasTransitionText.SetText("");*/
         
         yield return new WaitForSeconds(1f);
         movedFloors = false;
         canMoveFloors = true;
         canvasTransition.SetActive(false);
-
-
     }
 
     //Stop move, that's is. Move the point to the closest player cell.
@@ -161,9 +152,7 @@ public class PlayerScript : MonoBehaviour
     //Move the character
     private void Move()
     {
-        /*Final position of the main character will move towards X position at constant speed.
-            /Allow diagonal movement (to remove it would be adding a elseif for y movement
-            */
+        /*Final position of the main character will move towards X position at constant speed. */
         Rigidbody2D.position = Vector3.MoveTowards(Rigidbody2D.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         //Check if distance is minimum, to move again
@@ -178,6 +167,7 @@ public class PlayerScript : MonoBehaviour
                     //Move the character in X coord.
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                     Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect]);
+                    //Walking sounds
                     if (_moveEffect == 0)
                         _moveEffect = 1;
                     else
@@ -338,9 +328,9 @@ public class PlayerScript : MonoBehaviour
             //Remove comment to make a small animation whenever a floor go up or down
             
             canvasTransition.SetActive(true);
-            floor++;
-            canvasTransitionText.text = "Floor " + floor;
-            GameManager.instance.setFloor(floor);
+            _floor++;
+            canvasTransitionText.text = "Floor " + _floor;
+            GameManager.instance.setFloor(_floor);
 
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
             canMoveFloors = false;
@@ -355,9 +345,9 @@ public class PlayerScript : MonoBehaviour
         {
             
             canvasTransition.SetActive(true);
-            floor--;
-            canvasTransitionText.text = "Floor " + floor;
-            GameManager.instance.setFloor(floor);
+            _floor--;
+            canvasTransitionText.text = "Floor " + _floor;
+            GameManager.instance.setFloor(_floor);
             
             Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
             canMoveFloors = false;
@@ -385,7 +375,7 @@ public class PlayerScript : MonoBehaviour
 
     private void enemyTrigger(string enemyName,string showName, Collider2D enemyCollider)
     {
-        if (!battleEncounter)
+        if (!_battleEncounter)
         {
             int[] stats = EnemyStatList.enemyListing[enemyName];
             GameManager.instance.enemyName = showName;
@@ -399,9 +389,9 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
         }
-        battleEncounter = true;
-        battleActive = true;
-        canMove = false;
+        _battleEncounter = true;
+        _battleActive = true;
+        _canMove = false;
         GameManager.instance.enemyCollider = enemyCollider;
     }
 
@@ -445,9 +435,17 @@ public class PlayerScript : MonoBehaviour
     }
 
     //Create a small animation whenever something is picked up or removed or combat triggers.
+    /**
+     * icon -> icon to show
+     * number -> number to show
+     * inc -> incremental or no incremental
+     * combat -> if is on combat or no
+     * player -> if effect is onto the player or no
+     * collision -> to get collision coords.
+     */
     IEnumerator statusValue(int icon, int number, bool inc, bool combat = false, bool player = false, Collider2D collision = null)
     {
-        float currentTime = 0.5f;
+        float _currentTime = 0.5f;
         float animationTime = 0.1f;
         float alpha = 1f;
         //Create a new text for each object
@@ -464,7 +462,7 @@ public class PlayerScript : MonoBehaviour
         //Combat life animation
         if (combat)
         {
-            currentTime = 0.3f;
+            _currentTime = 0.3f;
             animationTime = 0.05f;
             GameObject text_e = new GameObject();
             GameObject text_e_value = new GameObject();
@@ -494,9 +492,9 @@ public class PlayerScript : MonoBehaviour
                 text_e_value.GetComponent<TextMeshPro>().color = new Color(1f, 0.325f, 0.325f);
                 text_e_value.GetComponent<TextMeshPro>().text = "- " + number.ToString();
             }
-            while (currentTime > 0f)
+            while (_currentTime > 0f)
             {
-                yield return new WaitForSeconds(currentTime);
+                yield return new WaitForSeconds(_currentTime);
 
                 if (player)
                 {
@@ -506,7 +504,7 @@ public class PlayerScript : MonoBehaviour
                     text.GetComponent<TextMeshPro>().alpha = alpha;
                     text_value.GetComponent<TextMeshPro>().alpha = alpha;
                     alpha -= 0.2f;
-                    currentTime -= animationTime;
+                    _currentTime -= animationTime;
                 }
                 else
                 {
@@ -516,7 +514,7 @@ public class PlayerScript : MonoBehaviour
                     text_e.GetComponent<TextMeshPro>().alpha = alpha;
                     text_e_value.GetComponent<TextMeshPro>().alpha = alpha;
                     alpha -= 0.2f;
-                    currentTime -= animationTime;
+                    _currentTime -= animationTime;
                 }
 
             }
@@ -543,9 +541,9 @@ public class PlayerScript : MonoBehaviour
                 text_value.GetComponent<TextMeshPro>().color = new Color(0.774f, 0.054f, 0.061f);
                 text_value.GetComponent<TextMeshPro>().text = "- " + number.ToString();
             }
-            while (currentTime > 0f)
+            while (_currentTime > 0f)
             {
-                yield return new WaitForSeconds(currentTime);
+                yield return new WaitForSeconds(_currentTime);
                 newY += 0.1f;
 
                 text.transform.position = new Vector3(text.transform.position.x, newY, text.transform.position.z);
@@ -553,7 +551,7 @@ public class PlayerScript : MonoBehaviour
                 text.GetComponent<TextMeshPro>().alpha = alpha;
                 text_value.GetComponent<TextMeshPro>().alpha = alpha;
                 alpha -= 0.2f;
-                currentTime -= animationTime;
+                _currentTime -= animationTime;
             }
             text.SetActive(false);
             text_value.SetActive(false);
@@ -561,7 +559,9 @@ public class PlayerScript : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
         }
     }
-
+    /**
+     * Attach components into the scene
+     */
     private void enumeratorComponents(GameObject obj)
     {
         obj.AddComponent<RectTransform>();

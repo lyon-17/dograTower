@@ -11,10 +11,11 @@ using UnityEngine;
 public class GameSave
 {
     public static GameSave current;
-    //Testing
+
     public GameData gameData;
     public List<Item> itemList;
     private bool _loadLater = false;
+    private int _floor = 1;
 
     public GameSave()
     {
@@ -30,6 +31,14 @@ public class GameSave
     public bool getLoad()
     {
         return _loadLater;
+    }
+    public void setFloor(int floor)
+    {
+        _floor = floor;
+    }
+    public int getFloor()
+    {
+        return _floor;
     }
 
 }

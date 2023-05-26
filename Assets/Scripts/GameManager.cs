@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Linq;
@@ -19,41 +18,67 @@ public class GameManager : MonoBehaviour
      * 3 -> red gem
      * 4 -> blue gem
      * 5 -> yellow key
-     * 6 -> yellow door (WIP)
+     * 6 -> yellow door
+     * 7 -> Green key
+     * 8 -> Green door
+     * 9 -> red key
+     * 10 -> red door
+     * 11 -> blue key
+     * 12 -> blue door
      */
     public GameObject[] items;
     /*
      * Contains the entire list of possible enemies
-     * 0 -> terror bat
-     * 1 -> gelatinous cube
+     * 0 -> small slime
+     * 1 -> brown slime
+     * 2 -> teal slime
+     * 3 -> terror bat
+     * 4 -> gelatinous cube
+     * 5 -> treant
+     * 6 -> watcher
+     * 7 -> vengeful spirit
+     * 8 -> winged demon
+     * 9 -> Dogra
      */
     public GameObject[] enemies;
 
     //Stores the current active objects from the scene.
-    private static List<GameObject> objs = new List<GameObject>();
+    private static List<GameObject> _objs = new List<GameObject>();
 
     //Stores the entire item list. Which is saved and loaded
-    private static List<Item> managerItemList = new List<Item>();
+    private static List<Item> _managerItemList = new List<Item>();
 
-    private static GameObject player, movePoint;
+    //Stores player and movepoint
+    private static GameObject _player, _movePoint;
 
     //To disable/enable icons beetwen scenes.
     private GameObject enemyIcons, playerIcons,uiBackground;
+    //Disable/enable backgrounds
     private Transform gEnemy, gPlayer, gBackground;
 
+    //Need to load stats from the file
     private static bool _loadStats = false;
 
     //Refresh the current scene as "creating" a new one
-    private static bool refresh = false;
+    private static bool _refresh = false;
     //To set the player position to the beggining
-    private static bool newGame = false;
-    private static bool loadFromMenu = false;
+    private static bool _newGame = false;
+    //Loading come from menu. GameManager isn't created so need to store the load data, load the game and then put the data into the game
+    private static bool _loadFromMenu = false;
 
-    private static int loadedX;
-    private static int loadedY;
+    //player coords in the save
+    private static int _loadedX;
+    private static int _loadedY;
 
-    private int originX = 1;
-    private int originY = 0;
+    //Origin position
+    private int _originX = 1;
+    private int _originY = 0;
+
+    //First floor
+    private int _floor = 1;
+
+    //Check if player have been defeated
+    private bool _defeated = false;
 
     //Base player stats
 
@@ -69,8 +94,10 @@ public class GameManager : MonoBehaviour
     public int playerDmg;
     public int enemyDmg;
 
+    //Enemy collider to the battle
     [HideInInspector]
     public Collider2D enemyCollider;
+    //Enemy stats
     [HideInInspector]
     public string enemyName;
     [HideInInspector]
@@ -91,14 +118,13 @@ public class GameManager : MonoBehaviour
     public TMP_Text text_hp_enemy;
     public TMP_Text text_atk_enemy;
     public TMP_Text text_def_enemy;
-    
-
+    //Check if the battle is active
     public bool battleActive = false;
-    private float currentTime;
-    private int _floor = 0;
+    
     void Awake()
     {
-        
+        //Defeated turned into false whenever the main game is loaded
+        _defeated = false;
         //Update the icons in the UI
         enemyIcons = GameObject.FindGameObjectWithTag("Icons");
         gEnemy = enemyIcons.transform.GetChild(0);
@@ -120,16 +146,14 @@ public class GameManager : MonoBehaviour
             if (GameSave.current.getLoad())
             {
                 getStats();
-                //refreshData();
-                //GameSave.current.setLoad(false);
                 _loadStats = true;
             }
         }
 
         //Need to refresh the scene
-        if (refresh)
+        if (_refresh)
         {
-            //Everytime game is loaded, a new canvas is created so is must be destroyed
+            //Everytime game is loaded, a new canvas is created so is must be destroyed, same with backgrounds
             GameObject[] canvasList = GameObject.FindGameObjectsWithTag("Canvas");
             foreach ( GameObject canva in canvasList)
             {
@@ -154,31 +178,31 @@ public class GameManager : MonoBehaviour
             int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys,playerRedKeys,playerBlueKeys };
             //Call to the stats script to refresh the text with the player stats
             CanvasStatsScript.instance.updatePlayerStats(playerStats);
-            player = GameObject.FindGameObjectWithTag("Player");
-            movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
             //Load from the title screen uses stored X and Y because player object don't exist before it.
-            if (loadFromMenu)
+            if (_loadFromMenu)
             {
-                player.transform.position = new Vector3(loadedX, loadedY, 0);
-                movePoint.transform.position = new Vector3(loadedX, loadedY, 0);
-                GameSave.current.gameData.playerX = (int)player.transform.position.x;
-                GameSave.current.gameData.playerY = (int)player.transform.position.y;
-                loadFromMenu = false;
+                _player.transform.position = new Vector3(_loadedX, _loadedY, 0);
+                _movePoint.transform.position = new Vector3(_loadedX, _loadedY, 0);
+                GameSave.current.gameData.playerX = (int)_player.transform.position.x;
+                GameSave.current.gameData.playerY = (int)_player.transform.position.y;
+                _loadFromMenu = false;
             }
             //Loading game move position to the saved game position
-            if (!newGame)
+            if (!_newGame)
             {
-                movePoint.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
-                player.GetComponent<Rigidbody2D>().position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+                _movePoint.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+                _player.GetComponent<Rigidbody2D>().position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
             }
             //destination is the start if there's the new game
             else
             {
-                movePoint.transform.position = new Vector3(originX, originY, 0);
-                player.GetComponent<Rigidbody2D>().position = new Vector3(originX, originY, 0);
+                _movePoint.transform.position = new Vector3(_originX, _originY, 0);
+                _player.GetComponent<Rigidbody2D>().position = new Vector3(_originX, _originY, 0);
             }
-            newGame = false;
-            refresh = false;
+            _newGame = false;
+            _refresh = false;
         }
         //Create a new instance when loaded
         if (instance == null)
@@ -193,7 +217,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(canvas);
         DontDestroyOnLoad(uiBackground);
     }
-
+    /**
+     * Start a new game from the beggining
+     */
     public static void startNew()
     {
         //Create a new gameSave
@@ -206,19 +232,18 @@ public class GameManager : MonoBehaviour
         playerGreenKeys = GameSave.current.gameData.playerGreenKeys;
         playerRedKeys = GameSave.current.gameData.playerRedKeys;
         playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
-        //managerItemList.Clear();
-        //GameSave.current.itemList.Clear();
-        managerItemList = ItemsList.getList();
-        GameSave.current.itemList = managerItemList;
-        //Update the scene adding the objects loaded into the scene
-        refresh = true;
-        newGame = true;
+        //Generates a new list and update the scene adding them
+        _managerItemList = ItemsList.getList();
+        GameSave.current.itemList = _managerItemList;
+
+        _refresh = true;
+        _newGame = true;
     }
 
     private void Start()
     {
+        //Initialize the enemy dictionary
         EnemyStatList.loadDictionary();
-        //mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //Initialize the gameSave to save
         if (!_loadStats)
         {
@@ -238,139 +263,139 @@ public class GameManager : MonoBehaviour
             text_rk.text = ": " + playerRedKeys;
             text_bk.text = ": " + playerBlueKeys;
             GameSave.current.itemList = new List<Item>();
-            managerItemList = ItemsList.getList();
+            _managerItemList = ItemsList.getList();
         }
         int[] playerStats = { playerHealth, playerAtk, playerDef, playerYellowKeys, playerGreenKeys, playerRedKeys, playerBlueKeys };
         //Call to the stats script to refresh the text with the player stats
         CanvasStatsScript.instance.updatePlayerStats(playerStats);
             //Add items to the local list
             loadItems();
-            player = GameObject.FindGameObjectWithTag("Player");
+            _player = GameObject.FindGameObjectWithTag("Player");
         
     }
 
     //Load items from the local list and turns to object added into the scene
     private void loadItems()
     {
-        foreach (Item i in managerItemList)
+        foreach (Item i in _managerItemList)
         {
             //Powerups
             if (i.getName().Contains("smallpot"))
             {
                 GameObject obj = Instantiate(items[0], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("mediumpot"))
             {
                 GameObject obj = Instantiate(items[1], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("bigpot"))
             {
                 GameObject obj = Instantiate(items[2], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("atkgem"))
             {
                 GameObject obj = Instantiate(items[3], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("defgem"))
             {
                 GameObject obj = Instantiate(items[4], new Vector3(i.getX(),i.getY(),0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             //Keys and doors
             if (i.getName().Contains("yellowkey"))
             {
                 GameObject obj = Instantiate(items[5], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("yellowdoor"))
             {
                 GameObject obj = Instantiate(items[6], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("greenkey"))
             {
                 GameObject obj = Instantiate(items[7], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("greendoor"))
             {
                 GameObject obj = Instantiate(items[8], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("redkey"))
             {
                 GameObject obj = Instantiate(items[9], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("reddoor"))
             {
                 GameObject obj = Instantiate(items[10], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("bluekey"))
             {
                 GameObject obj = Instantiate(items[11], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("bluedoor"))
             {
                 GameObject obj = Instantiate(items[12], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             //Enemies
             if (i.getName().Contains("smallslime"))
             {
                 GameObject obj = Instantiate(enemies[0], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("brown"))
             {
                 GameObject obj = Instantiate(enemies[1], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("teal"))
             {
                 GameObject obj = Instantiate(enemies[2], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("terror"))
             {
                 GameObject obj = Instantiate(enemies[3], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("gelatinous"))
             {
                 GameObject obj = Instantiate(enemies[4], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("treant"))
             {
                 GameObject obj = Instantiate(enemies[5], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("watcher"))
             {
                 GameObject obj = Instantiate(enemies[6], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("vengeful"))
             {
                 GameObject obj = Instantiate(enemies[7], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("winged"))
             {
                 GameObject obj = Instantiate(enemies[8], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
             if (i.getName().Contains("Dogra"))
             {
                 GameObject obj = Instantiate(enemies[9], new Vector3(i.getX(), i.getY(), 0), Quaternion.identity);
-                objs.Add(obj);
+                _objs.Add(obj);
             }
         }
     }
@@ -388,12 +413,12 @@ public class GameManager : MonoBehaviour
         playerBlueKeys = GameSave.current.gameData.playerBlueKeys;
 
         //Player position
-        if (player != null)
-            player.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+        if (_player != null)
+            _player.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
         else
-            loadFromMenu = true;
+            _loadFromMenu = true;
         //Items in the scene
-        managerItemList = GameSave.current.itemList;
+        _managerItemList = GameSave.current.itemList;
         
     }
 
@@ -410,15 +435,15 @@ public class GameManager : MonoBehaviour
         GameSave.current.gameData.playerBlueKeys = playerBlueKeys;
 
         //Player position saved as x and y
-        GameSave.current.gameData.playerX = (int) player.transform.position.x;
-        GameSave.current.gameData.playerY = (int) player.transform.position.y;
+        GameSave.current.gameData.playerX = (int) _player.transform.position.x;
+        GameSave.current.gameData.playerY = (int) _player.transform.position.y;
         //All the active objects are saved as items
         GameSave.current.itemList = new List<Item>();
 
         string[] objectNames = {"atkgem","defgem","smallpotion","mediumpotion","bigpotion",
                                 "yellowkey","greenkey","redkey","bluekey","yellowdoor","greendoor","reddoor","bluedoor",
                                 "smallslime","brownslime","tealslime","terrorbat","gelatinouscube","watcher","treant","vengefulspirit","wingeddemon"};
-        foreach (GameObject obj in objs)
+        foreach (GameObject obj in _objs)
         {
             //Check that object exist in the current scene
             if (obj != null)
@@ -432,24 +457,28 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        managerItemList = GameSave.current.itemList;
+        _managerItemList = GameSave.current.itemList;
     }
 
     //Creates a new save to generate a new save when needed
     public static void refreshData()
     {
         //Stores player position from the save. To load from the title screen
-        if(loadFromMenu)
+        if(_loadFromMenu)
         {
-            loadedX = GameSave.current.gameData.playerX;
-            loadedY = GameSave.current.gameData.playerY;
+            _loadedX = GameSave.current.gameData.playerX;
+            _loadedY = GameSave.current.gameData.playerY;
         }
         if (_loadStats)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
-            movePoint.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
-            player.GetComponent<Rigidbody2D>().position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
+            _movePoint.transform.position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+            _player.GetComponent<Rigidbody2D>().position = new Vector3(GameSave.current.gameData.playerX, GameSave.current.gameData.playerY, 0);
+            int times = GameSave.current.gameData.playerY / 19;
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + (19 * times), Camera.main.transform.position.z);
+            instance.moveUIBackground(times, true);
+            GameSave.current.setFloor(times);
         }
         //Create a new gameSave
         GameSave.current = new GameSave();
@@ -462,16 +491,16 @@ public class GameManager : MonoBehaviour
         GameSave.current.gameData.playerRedKeys = playerRedKeys;
         GameSave.current.gameData.playerBlueKeys = playerBlueKeys;
         //If loaded inside the tower.
-        if (player != null)
+        if (_player != null)
         {
-            GameSave.current.gameData.playerX = (int)player.transform.position.x;
-            GameSave.current.gameData.playerY = (int)player.transform.position.y;
+            GameSave.current.gameData.playerX = (int)_player.transform.position.x;
+            GameSave.current.gameData.playerY = (int)_player.transform.position.y;
         }
         //A new list with the items in the scene
         GameSave.current.itemList = new List<Item>();
-        GameSave.current.itemList = managerItemList;
+        GameSave.current.itemList = _managerItemList;
         //Update the scene adding the objects loaded into the scene
-        refresh = true;
+        _refresh = true;
     }
 
     public bool initBattle()
@@ -492,7 +521,7 @@ public class GameManager : MonoBehaviour
             enemyCollider.gameObject.SetActive(false);
             disactivateIcons();
             CanvasStatsScript.instance.cleanStats();
-            //Modify later on
+            //Credits when Dogra is defeated
             if (enemyName.Contains("Dogra"))
             {
                 SceneManager.LoadScene("Credits");
@@ -515,6 +544,7 @@ public class GameManager : MonoBehaviour
     {
         gEnemy.gameObject.SetActive(false);
     }
+    //Deactivate/activate player icons
     public void disablePlayerIcons()
     {
         gPlayer.gameObject.SetActive(false);
@@ -523,6 +553,7 @@ public class GameManager : MonoBehaviour
     {
         gBackground.gameObject.SetActive(false);
     }
+    //Move the UI background
     public void moveUIBackground(int times, bool load)
     {
         float originY = uiBackground.transform.position.y;
@@ -531,6 +562,7 @@ public class GameManager : MonoBehaviour
         uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, originY + (19 * times), uiBackground.transform.position.z);
     }
 
+    //Set and get floor if different from the current one
     public void setFloor(int floor)
     {
         _floor = floor;
@@ -544,12 +576,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerHealth <= 0)
+        if (playerHealth <= 0 && !_defeated)
         {
             CanvasStatsScript.instance.cleanAllStats();
             disablePlayerIcons();
             disactivateIcons();
             disableUIBackground();
+            _defeated = true;
             SceneManager.LoadScene("GameOver");
         }
         if (_loadStats)
@@ -558,11 +591,5 @@ public class GameManager : MonoBehaviour
             
             _loadStats = false;
         }
-        //temp, remove when needed
-        /*if (floor != 10)
-        {
-            int y = (int)player.GetComponent<Rigidbody2D>().position.y;
-            floor = y / 19;
-        }*/
     }
 }

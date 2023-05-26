@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -11,14 +12,21 @@ public class SystemScript : MonoBehaviour
 {
     public Canvas menuCanvas;
 
+    //Hides or show the menu whenever load is clicked
     public static bool showLoad;
 
     public Vector2 scrollPosition = Vector2.zero;
+    private Texture2D _blackTexture;
 
     public static List<GameSave> savedGames = new List<GameSave>();
 
     private void Start()
     {
+        _blackTexture = Texture2D.blackTexture;
+        Color[] pixels = Enumerable.Repeat(Color.black, _blackTexture.width * _blackTexture.height).ToArray();
+        _blackTexture.SetPixels(pixels);
+        _blackTexture.Apply();
+
         if (menuCanvas != null)
         {
             menuCanvas.gameObject.SetActive(false);
@@ -37,11 +45,14 @@ public class SystemScript : MonoBehaviour
             scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(250), GUILayout.Height(200));
             GUILayout.Box("Select Save File");
             GUILayout.Space(10);
+            GUIStyle btnStyle = new GUIStyle(GUI.skin.button);
+            btnStyle.normal.background = _blackTexture;
             int game = 0;
             SaveLoad.Load();
             foreach (GameSave g in SaveLoad.savedGames)
             {
-                if (GUILayout.Button("Game number: " + game + ". HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef))
+                string btnText = "Game number: " + game + ". HP" + g.gameData.playerHealth + " atk " + g.gameData.playerAtk + " def " + g.gameData.playerDef;
+                if (GUILayout.Button(btnText, btnStyle))
                 {
                     if (GameSave.current == null)
                     {
@@ -85,25 +96,30 @@ public class SystemScript : MonoBehaviour
         }
     }   
 
+    //Save the current game
     public static void SaveGame()
     {
         SaveLoad.Save();
     }
 
+    //Load the GUI with the games
     public void LoadGame()
     {
         //Should call OnGUI
         showLoad = true;
     }
 
+    //Load the tutorial tower
     public void startTutorial()
     {
         SceneManager.LoadScene("TutorialTower");
     }
 
+    //Return to the main menu
     public void BackToMenu()
     {
         //remove numbers in the main menu
+        if(CanvasStatsScript.instance != null)
         CanvasStatsScript.instance.cleanAllStats();
 
         //Disable the icons to not be shown in the main menu.
@@ -118,7 +134,13 @@ public class SystemScript : MonoBehaviour
         SceneManager.LoadScene("Intro");
     }
 
-    //Finaliza el juego
+    //Load the instruction scene
+    public void Instructions()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+
+    //Ends the game
     public void FinishGame()
     {
         Application.Quit();

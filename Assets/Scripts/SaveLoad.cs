@@ -8,7 +8,6 @@ using UnityEngine;
 
 public static class SaveLoad 
 {
-    //public static List<FloorScript> savedGames = new List<FloorScript>();
     public static List<GameSave> savedGames = new List<GameSave>();
 
     public static void Save()
@@ -22,7 +21,6 @@ public static class SaveLoad
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
         bf.Serialize(file, savedGames);
         string json = JsonUtility.ToJson(GameSave.current);
-        Debug.Log("Saving as JSON: " + json);
         file.Close();
         GameManager.refreshData();
     }
