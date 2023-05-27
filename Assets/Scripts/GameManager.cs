@@ -442,7 +442,7 @@ public class GameManager : MonoBehaviour
 
         string[] objectNames = {"atkgem","defgem","smallpotion","mediumpotion","bigpotion",
                                 "yellowkey","greenkey","redkey","bluekey","yellowdoor","greendoor","reddoor","bluedoor",
-                                "smallslime","brownslime","tealslime","terrorbat","gelatinouscube","watcher","treant","vengefulspirit","wingeddemon"};
+                                "smallslime","brownslime","tealslime","terrorbat","gelatinous","watcher","treant","vengefulspirit","wingeddemon","dogra"};
         foreach (GameObject obj in _objs)
         {
             //Check that object exist in the current scene
@@ -510,7 +510,7 @@ public class GameManager : MonoBehaviour
         activateIcons();
         string[] enemyStats = { enemyName, enemyHealth.ToString(), enemyAtk.ToString(), enemyDef.ToString() };
         CanvasStatsScript.instance.updateEnemyStats(enemyStats);
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)],0.7f);
         playerDmg = playerAtk - enemyDef;
         enemyDmg = enemyAtk - playerDef;
         enemyHealth -= playerDmg;
@@ -529,7 +529,7 @@ public class GameManager : MonoBehaviour
             battleActive = false;
             return false;
         }
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(Hurt);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(Hurt,0.7f);
         playerHealth -= enemyDmg;
         CanvasStatsScript.instance.updateStat("hp", playerHealth);
         return true;

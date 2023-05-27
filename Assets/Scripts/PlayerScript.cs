@@ -166,7 +166,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     //Move the character in X coord.
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect]);
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect],0.4f);
                     //Walking sounds
                     if (_moveEffect == 0)
                         _moveEffect = 1;
@@ -180,7 +180,7 @@ public class PlayerScript : MonoBehaviour
                 if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect]);
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(playerMoveEffects[_moveEffect],0.4f);
                     if (_moveEffect == 0)
                         _moveEffect = 1;
                     else
@@ -207,7 +207,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.tag == "AtkGem")
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1],0.5f);
             GameManager.playerAtk++;
             CanvasStatsScript.instance.updateStat("atk", GameManager.playerAtk);
             collision.gameObject.SetActive(false);
@@ -215,7 +215,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.tag == "DefGem")
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1],0.5f);
             GameManager.playerDef++;
             CanvasStatsScript.instance.updateStat("def", GameManager.playerDef);
             StartCoroutine(statusValue(0, 1, true));
@@ -241,7 +241,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerYellowKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3],0.5f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerYellowKeys--;
                 CanvasStatsScript.instance.updateStat("yk", GameManager.playerYellowKeys);
@@ -252,7 +252,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerGreenKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerGreenKeys--;
                 CanvasStatsScript.instance.updateStat("gk", GameManager.playerGreenKeys);
@@ -263,7 +263,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerRedKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerRedKeys--;
                 CanvasStatsScript.instance.updateStat("rk", GameManager.playerRedKeys);
@@ -274,7 +274,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerBlueKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerBlueKeys--;
                 CanvasStatsScript.instance.updateStat("bk", GameManager.playerBlueKeys);
@@ -332,7 +332,7 @@ public class PlayerScript : MonoBehaviour
             canvasTransitionText.text = "Floor " + _floor;
             GameManager.instance.setFloor(_floor);
 
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4], 0.5f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
@@ -349,7 +349,7 @@ public class PlayerScript : MonoBehaviour
             canvasTransitionText.text = "Floor " + _floor;
             GameManager.instance.setFloor(_floor);
             
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5], 0.5f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(-1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
@@ -360,7 +360,7 @@ public class PlayerScript : MonoBehaviour
         }
         if(collision.tag == "Vortex")
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[6]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[6], 0.5f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
@@ -400,7 +400,7 @@ public class PlayerScript : MonoBehaviour
 
     private void potionTrigger(int health, Collider2D potionCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0], 0.5f);
         GameManager.playerHealth += health;
         StartCoroutine(statusValue(2, health, true));
         CanvasStatsScript.instance.updateStat("hp", GameManager.playerHealth);
@@ -409,7 +409,7 @@ public class PlayerScript : MonoBehaviour
 
     private void keyTrigger(string keyType, Collider2D keyCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2], 0.5f);
         switch (keyType)
         {
             case "yellow":
