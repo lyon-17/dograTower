@@ -113,7 +113,7 @@ public class TutorialScript : MonoBehaviour
         //Enable icons (exit to the menu shows them)
         gPlayer.gameObject.SetActive(true);
         gEnemy.gameObject.SetActive(false);
-        //Initialize the gameSave to save
+
         playerHealth = 100;
         playerAtk = 12;
         playerDef = 2;
@@ -480,18 +480,6 @@ public class TutorialScript : MonoBehaviour
 
     IEnumerator moveFloor()
     {
-        //float currentTime = 1.0f;
-        //float animationTime = 0.1f;
-        //Remove to add a animation
-
-        /*canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
-        while (currentTime > 0f)
-        {
-            yield return new WaitForSeconds(animationTime);
-            currentTime -= animationTime;
-            canvasTransitionPanel.GetComponent<Image>().material.color = new Color(1.0f, 1.0f, 1.0f, currentTime);
-        }
-        canvasTransitionText.SetText("");*/
         yield return new WaitForSeconds(1f);
 
         movedFloors = false;

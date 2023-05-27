@@ -34,8 +34,6 @@ public class ItemsFloorTen : MonoBehaviour
         tenFloorList.Add(new Item("wingeddemon", 10, 6 + baseY));
         tenFloorList.Add(new Item("wingeddemon", 10, 7 + baseY));
         tenFloorList.Add(new Item("wingeddemon", 10, 8 + baseY));
-
-        tenFloorList.Add(new Item("Dogra", 7, 9 + baseY));
     }
 
     public static List<Item> getList()
