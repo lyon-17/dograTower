@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ScoreScript : MonoBehaviour
     public TMP_Text text_credits;
 
     private bool _startAnimation = true;
+
+    private float _currentTime = 19f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,19 +53,26 @@ public class ScoreScript : MonoBehaviour
             StartCoroutine(moveCredits());
         }
     }
+
+    private void Update()
+    {
+        if(_currentTime < 2f)
+            if (Input.anyKeyDown)
+            {
+                SceneManager.LoadScene("Intro");
+            }
+    }
+
     IEnumerator moveCredits()
     {
-        float currentTime = 19.0f;
         //Animation slowly scroll the text
         float animationTime = 0.1f;
         yield return new WaitForSeconds(2f);
-        while (currentTime > 0f)
+        while (_currentTime > 0f)
         {
-            Debug.Log(currentTime);
             yield return new WaitForSeconds(animationTime);
             text_credits.transform.position = new Vector3(text_credits.transform.position.x, (text_credits.transform.position.y+0.1f), text_credits.transform.position.z);
-            currentTime -= animationTime;
+            _currentTime -= animationTime;
         }
-        
     }
 }

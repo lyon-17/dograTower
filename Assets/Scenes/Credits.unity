@@ -787,7 +787,9 @@ MonoBehaviour:
 
 
     Thanks
-    for Playing!'
+    for Playing!
+
+    Press any key to return to the main menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98725b881211d7442a51511614858189, type: 2}
   m_sharedMaterial: {fileID: -7110695101903668242, guid: 98725b881211d7442a51511614858189, type: 2}
