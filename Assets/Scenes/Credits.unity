@@ -148,17 +148,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654060074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1115786258}
-  m_RootOrder: 1
+  m_Father: {fileID: 960003697}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -322, y: 32.5}
+  m_AnchoredPosition: {x: 348, y: -2425}
   m_SizeDelta: {x: 285.15, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654060076
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -598,10 +598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You slayed the beast and the tower started to crumble to dust... but you
-    hear a voice \n\"You defeated my clone, but it won't be enough to stop my plans
-    to destroy your pathetic world\". You wondered who said it as you leave the tower
-    leftovers.\nCongratulations for beating Dogra.\nYour score is: "
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98725b881211d7442a51511614858189, type: 2}
   m_sharedMaterial: {fileID: -7110695101903668242, guid: 98725b881211d7442a51511614858189, type: 2}
@@ -707,14 +704,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 654060075}
   m_Father: {fileID: 688284312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: -236}
-  m_SizeDelta: {x: 1204, y: 268.45}
+  m_AnchoredPosition: {x: 36, y: -644}
+  m_SizeDelta: {x: 1619.49, y: 268.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &960003698
 MonoBehaviour:
@@ -736,60 +734,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits:
-
-
-    Game made by Alejandro
-
-
-    Graphics made by:
-
-    Dreaming
-    of Light
-
-    Gamesuppyguy
-
-    RottingPixels
-
-    DeepDiveGameStudio
-
-    Kyrise
-
-    ScreamingBrainStudios
-
-    Saukgp
-
-    o_lobster
-
-
-    Music
-    made by:
-
-    CyberCutie
-
-    Ivan Muzan
-
-    Nature Eye
-
-    The Mountain
-
-    ComaMedia
-
-    ComaStudio
-
-    Penguin
-    Music
-
-
-    Sound Effects made by:
-
-    Osabisi (http://osabisi.sakura.ne.jp/m2/)
-
-
-    Thanks
-    for Playing!
-
-    Press any key to return to the main menu'
+  m_text: "You slayed the beast and the tower started to crumble to dust... but you
+    hear a voice \n\"You defeated my clone, but it won't be enough to stop my plans
+    to destroy your pathetic world\". You wondered who said it as you leave the tower
+    leftovers.\nCongratulations for beating Dogra.\n\nCredits:\n\nGame made by Alejandro\n\nGraphics
+    made by:\nDreaming of Light\nGamesuppyguy\nRottingPixels\nDeepDiveGameStudio\nKyrise\nScreamingBrainStudios\nSaukgp\no_lobster\n\nMusic
+    made by:\nCyberCutie\nIvan Muzan\nNature Eye\nThe Mountain\nComaMedia\nComaStudio\nPenguin
+    Music\n\nSound Effects made by:\nOsabisi (http://osabisi.sakura.ne.jp/m2/)\n\nThanks
+    for Playing!\nYour score is: \nPress any key to return to the main menu"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98725b881211d7442a51511614858189, type: 2}
   m_sharedMaterial: {fileID: -7110695101903668242, guid: 98725b881211d7442a51511614858189, type: 2}
@@ -1028,7 +980,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 886766804}
-  - {fileID: 654060075}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1128,8 +1079,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127019388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0438, y: 2.113, z: 0}
-  m_LocalScale: {x: 19.43169, y: 6.03231, z: 1}
+  m_LocalPosition: {x: 0.0438, y: 3.1624, z: 0}
+  m_LocalScale: {x: 19.43169, y: 3.9336696, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

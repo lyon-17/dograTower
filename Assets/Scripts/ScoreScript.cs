@@ -12,7 +12,7 @@ public class ScoreScript : MonoBehaviour
 
     private bool _startAnimation = true;
 
-    private float _currentTime = 19f;
+    private float _currentTime = 45f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +24,14 @@ public class ScoreScript : MonoBehaviour
 
         //Score is calculated as
         /*
-         * health * 25
+         * health / 25
          * atk * 5
          * def * 5
          * yk * 200
          * gk * 350
-         * rk * 500
+         * rk * 600
          */
+
         int score =
             GameManager.playerHealth / 25 +
             GameManager.playerAtk * 5 +
@@ -66,13 +67,15 @@ public class ScoreScript : MonoBehaviour
     IEnumerator moveCredits()
     {
         //Animation slowly scroll the text
-        float animationTime = 0.1f;
+        float animationTime = 0.15f;
         yield return new WaitForSeconds(2f);
         while (_currentTime > 0f)
         {
             yield return new WaitForSeconds(animationTime);
             text_credits.transform.position = new Vector3(text_credits.transform.position.x, (text_credits.transform.position.y+0.1f), text_credits.transform.position.z);
             _currentTime -= animationTime;
+            Debug.Log(_currentTime);
         }
+        
     }
 }
