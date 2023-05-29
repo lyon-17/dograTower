@@ -124,7 +124,7 @@ public class PlayerScript : MonoBehaviour
             disable = false;
             SystemScript.showLoad = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !disable)
+        else if (Input.GetKeyDown(KeyCode.Escape) && !disable && !_battleActive)
         {
             //open menu
             menuCanvas.gameObject.SetActive(true);
