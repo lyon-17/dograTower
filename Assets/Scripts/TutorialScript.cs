@@ -149,10 +149,8 @@ public class TutorialScript : MonoBehaviour
         text_status.transform.position = new Vector3(Rigidbody2D.transform.position.x + 2f, Rigidbody2D.transform.position.y + 1.5f, Rigidbody2D.transform.position.z);
         if(playerHealth <= 0)
         {
-            CanvasStatsScript.instance.cleanAllStats();
-            disablePlayerIcons();
-            disactivateIcons();
-            SceneManager.LoadScene("GameOver");
+            CanvasStatsScript.instance.cleanStats();
+            SceneManager.LoadScene("TutorialTower");
         }
         if (!disable)
         {
@@ -297,7 +295,7 @@ public class TutorialScript : MonoBehaviour
         if (collision.tag == "AtkGem")
         {
             playerAtk++;
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1],0.4f);
             CanvasStatsScript.instance.updateStat("atk", playerAtk);
             StartCoroutine(statusValue(1, 1, true));
             collision.gameObject.SetActive(false);
@@ -305,7 +303,7 @@ public class TutorialScript : MonoBehaviour
         if (collision.tag == "DefGem")
         {
             playerDef++;
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[1], 0.4f);
             CanvasStatsScript.instance.updateStat("def", playerDef);
             StartCoroutine(statusValue(0, 1, true));
             collision.gameObject.SetActive(false);
@@ -330,7 +328,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerYellowKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 playerYellowKeys--;
                 StartCoroutine(statusValue(3, 1, false));
@@ -341,7 +339,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerGreenKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 playerGreenKeys--;
                 StartCoroutine(statusValue(4, 1, false));
@@ -352,7 +350,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerRedKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 playerRedKeys--;
                 StartCoroutine(statusValue(5, 1, false));
@@ -363,7 +361,7 @@ public class TutorialScript : MonoBehaviour
         {
             if (playerBlueKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3]);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 playerBlueKeys--;
                 StartCoroutine(statusValue(6, 1, false));
@@ -378,7 +376,7 @@ public class TutorialScript : MonoBehaviour
         }
         if (collision.tag == "StairsUp" && !movedFloors)
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4], 0.4f);
             canMoveFloors = false;
             uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, uiBackground.transform.position.y + 19, uiBackground.transform.position.z);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
@@ -390,7 +388,7 @@ public class TutorialScript : MonoBehaviour
         }
         if (collision.tag == "StairsDown" && !movedFloors)
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5]);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5], 0.4f);
             canMoveFloors = false;
             uiBackground.transform.position = new Vector3(uiBackground.transform.position.x, uiBackground.transform.position.y - 19, uiBackground.transform.position.z);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
@@ -405,7 +403,7 @@ public class TutorialScript : MonoBehaviour
 
     private void potionTrigger(int health, Collider2D potionCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0], 0.4f);
         playerHealth += health;
         CanvasStatsScript.instance.updateStat("hp", playerHealth);
         StartCoroutine(statusValue(2, health, true));
@@ -414,7 +412,7 @@ public class TutorialScript : MonoBehaviour
 
     private void keyTrigger(string keyType, Collider2D keyCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2], 0.4f);
         switch (keyType)
         {
             case "yellow":
@@ -447,7 +445,7 @@ public class TutorialScript : MonoBehaviour
         //To not update the stats.
         activateIcons();
         battleActive = true;
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)]);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)], 0.4f);
         string[] enemyStats = { enemyName, enemyHealth.ToString(), enemyAtk.ToString(), enemyDef.ToString() };
         CanvasStatsScript.instance.updateEnemyStats(enemyStats);
 
