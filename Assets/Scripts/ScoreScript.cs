@@ -12,7 +12,7 @@ public class ScoreScript : MonoBehaviour
 
     private bool _startAnimation = true;
 
-    private float _currentTime = 45f;
+    private float _currentTime = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +74,6 @@ public class ScoreScript : MonoBehaviour
             yield return new WaitForSeconds(animationTime);
             text_credits.transform.position = new Vector3(text_credits.transform.position.x, (text_credits.transform.position.y+0.1f), text_credits.transform.position.z);
             _currentTime -= animationTime;
-            Debug.Log(_currentTime);
         }
         
     }
