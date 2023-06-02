@@ -510,9 +510,11 @@ public class GameManager : MonoBehaviour
         activateIcons();
         string[] enemyStats = { enemyName, enemyHealth.ToString(), enemyAtk.ToString(), enemyDef.ToString() };
         CanvasStatsScript.instance.updateEnemyStats(enemyStats);
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)],0.7f);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(combatSounds[Random.Range(0, combatSounds.Length)],0.4f);
         playerDmg = playerAtk - enemyDef;
         enemyDmg = enemyAtk - playerDef;
+        if (enemyDmg < 0)
+            enemyDmg = 0;
         enemyHealth -= playerDmg;
 
         CanvasStatsScript.instance.updateStat("elife", enemyHealth);
