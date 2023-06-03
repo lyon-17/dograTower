@@ -123,7 +123,6 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
-        
         //Update the icons in the UI
         enemyIcons = GameObject.FindGameObjectWithTag("Icons");
         gEnemy = enemyIcons.transform.GetChild(0);
@@ -179,6 +178,7 @@ public class GameManager : MonoBehaviour
             CanvasStatsScript.instance.updatePlayerStats(playerStats);
             _player = GameObject.FindGameObjectWithTag("Player");
             _movePoint = GameObject.FindGameObjectWithTag("PlayerMovePoint");
+
             //Load from the title screen uses stored X and Y because player object don't exist before it.
             if (_loadFromMenu)
             {
@@ -197,8 +197,9 @@ public class GameManager : MonoBehaviour
             //destination is the start if there's the new game
             else
             {
-                _movePoint.transform.position = new Vector3(_originX, _originY, 0);
                 _player.GetComponent<Rigidbody2D>().position = new Vector3(_originX, _originY, 0);
+                _movePoint.transform.position = new Vector3(_originX, _originY, 0);
+                
             }
             _newGame = false;
             _refresh = false;

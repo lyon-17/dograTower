@@ -52,7 +52,6 @@ public class PlayerScript : MonoBehaviour
 
     //Canvas for floor transition (Just a black screen)
     public GameObject canvasTransition;
-    public CanvasRenderer canvasTransitionPanel;
     public TMP_Text canvasTransitionText;
     private int _floor = 1;
     private bool _setFloor = true;
@@ -74,18 +73,19 @@ public class PlayerScript : MonoBehaviour
          */
         if(Rigidbody2D.position.y > 19)
         {
-            int times = (int) Rigidbody2D.position.y / 19;
+            int times = (int)Rigidbody2D.position.y / 19;
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + (19 * times), Camera.main.transform.position.z);
             GameManager.instance.moveUIBackground(times,true);
-            _floor = GameSave.current.getFloor();
         }
     }
 
     void Update()
     {
-        if(_setFloor && _floor != GameSave.current.getFloor())
+        if (_setFloor)
         {
-            _floor = GameSave.current.getFloor();
+            int times = (int)Rigidbody2D.position.y / 19;
+            _floor = times + 1;
+            GameSave.current.setFloor(_floor);
             _setFloor = false;
         }
         text_status.transform.position = new Vector3(Rigidbody2D.transform.position.x+2f, Rigidbody2D.transform.position.y+1.5f, Rigidbody2D.transform.position.z);
@@ -252,7 +252,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerGreenKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerGreenKeys--;
                 CanvasStatsScript.instance.updateStat("gk", GameManager.playerGreenKeys);
@@ -263,7 +263,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerRedKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerRedKeys--;
                 CanvasStatsScript.instance.updateStat("rk", GameManager.playerRedKeys);
@@ -274,7 +274,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (GameManager.playerBlueKeys > 0)
             {
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.5f);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[3], 0.4f);
                 collision.gameObject.SetActive(false);
                 GameManager.playerBlueKeys--;
                 CanvasStatsScript.instance.updateStat("bk", GameManager.playerBlueKeys);
@@ -332,7 +332,7 @@ public class PlayerScript : MonoBehaviour
             canvasTransitionText.text = "Floor " + _floor;
             GameManager.instance.setFloor(_floor);
 
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4], 0.5f);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[4], 0.4f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
@@ -349,7 +349,7 @@ public class PlayerScript : MonoBehaviour
             canvasTransitionText.text = "Floor " + _floor;
             GameManager.instance.setFloor(_floor);
             
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5], 0.5f);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[5], 0.4f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(-1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 19, Camera.main.transform.position.z);
@@ -360,7 +360,7 @@ public class PlayerScript : MonoBehaviour
         }
         if(collision.tag == "Vortex")
         {
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[6], 0.5f);
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[6], 0.4f);
             canMoveFloors = false;
             GameManager.instance.moveUIBackground(1,false);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 19, Camera.main.transform.position.z);
@@ -400,7 +400,7 @@ public class PlayerScript : MonoBehaviour
 
     private void potionTrigger(int health, Collider2D potionCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0], 0.5f);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[0], 0.4f);
         GameManager.playerHealth += health;
         StartCoroutine(statusValue(2, health, true));
         CanvasStatsScript.instance.updateStat("hp", GameManager.playerHealth);
@@ -409,7 +409,7 @@ public class PlayerScript : MonoBehaviour
 
     private void keyTrigger(string keyType, Collider2D keyCollider)
     {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2], 0.5f);
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(SoundsEffect[2], 0.4f);
         switch (keyType)
         {
             case "yellow":
@@ -568,8 +568,8 @@ public class PlayerScript : MonoBehaviour
     private void enumeratorComponents(GameObject obj)
     {
         obj.AddComponent<RectTransform>();
-        obj.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0.5f);
-        obj.GetComponent<RectTransform>().anchorMax = new Vector2(0, 0.5f);
+        obj.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0.4f);
+        obj.GetComponent<RectTransform>().anchorMax = new Vector2(0, 0.4f);
         obj.AddComponent<TextMeshPro>();
     }
 }

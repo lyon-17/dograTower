@@ -11,11 +11,14 @@ public class CameraSoundManager : MonoBehaviour
     public AudioClip[] audioSources;
     public AudioClip[] audioSources2part;
     public AudioClip lastFloor;
-    bool highFloors = false;
-    bool lastPlay = false;
+    private GameObject _playerPos;
+    private int _floor = 0;
+    private bool _highFloors = false;
+    private bool _lastPlay = false;
     // Start is called before the first frame update
     void Start()
     {
+        _playerPos = GameObject.FindGameObjectWithTag("Player");
         randomSong = GetComponent<AudioSource>();
         lastSong = GetComponent<AudioSource>();
         randomAudio();
@@ -24,7 +27,7 @@ public class CameraSoundManager : MonoBehaviour
 
     void randomAudio()
     {
-        if (!highFloors)
+        if (!_highFloors)
             randomSong.clip = audioSources[Random.Range(0, audioSources.Length)];
         else
             randomSong.clip = audioSources2part[Random.Range(0, audioSources2part.Length)];
@@ -33,7 +36,7 @@ public class CameraSoundManager : MonoBehaviour
     void playFinale()
     {
         randomSong.Stop();
-        lastPlay = true;
+        _lastPlay = true;
         lastSong.clip = lastFloor;
         lastSong.loop = true;
         lastSong.Play();
@@ -42,17 +45,25 @@ public class CameraSoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.getFloor() >= 6 && !highFloors)
+        //Set the floor and update the music
+        if(_floor == 0)
         {
-            highFloors = true;
+            Debug.Log("Setting floor");
+            _floor = (int)(_playerPos.transform.position.y / 19)+1;
+            GameManager.instance.setFloor(_floor);
+            Debug.Log(GameManager.instance.getFloor());
+        }
+        if (GameManager.instance.getFloor() >= 7 && !_highFloors)
+        {
+            _highFloors = true;
             randomAudio();
         }
-        if (GameManager.instance.getFloor() <= 5 && highFloors)
+        if (GameManager.instance.getFloor() <= 6 && _highFloors)
         {
-            highFloors = false;
+            _highFloors = false;
             randomAudio();
         }
-        if(GameManager.instance.getFloor() == 10 && !lastPlay)
+        if(GameManager.instance.getFloor() == 10 && !_lastPlay)
         {
             playFinale();
         }
