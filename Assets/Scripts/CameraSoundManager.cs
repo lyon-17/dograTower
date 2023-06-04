@@ -48,10 +48,8 @@ public class CameraSoundManager : MonoBehaviour
         //Set the floor and update the music
         if(_floor == 0)
         {
-            Debug.Log("Setting floor");
             _floor = (int)(_playerPos.transform.position.y / 19)+1;
             GameManager.instance.setFloor(_floor);
-            Debug.Log(GameManager.instance.getFloor());
         }
         if (GameManager.instance.getFloor() >= 7 && !_highFloors)
         {

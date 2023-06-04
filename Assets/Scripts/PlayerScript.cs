@@ -319,7 +319,6 @@ public class PlayerScript : MonoBehaviour
         }
         if (collision.tag == "Dogra")
         {
-            Debug.Log("collider");
             enemyTrigger("Dogra","Dogra, the Abyssal Worm", collision);
         }
 
