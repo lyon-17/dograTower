@@ -46,7 +46,7 @@ public class CameraSoundManager : MonoBehaviour
     void Update()
     {
         //Set the floor and update the music
-        if(_floor == 0)
+        if(_floor == 0 || _floor == 1 && _playerPos.transform.position.y != 1)
         {
             _floor = (int)(_playerPos.transform.position.y / 19)+1;
             GameManager.instance.setFloor(_floor);
